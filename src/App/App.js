@@ -1,12 +1,28 @@
-import React from 'react';
+import React, { Component } from 'react';
 import './App.css';
+import Header from '../Header/Header';
 
-function App() {
-  return (
-    <div className="App">
-      <h1>Testing!</h1>
-    </div>
-  );
+class App extends Component {
+  constructor() {
+    super()
+    this.state = {
+      searchResults: [],
+      filteredSearchResults: [],
+      error: '',
+      breweriesToVisit: [],
+      breweriesVisited: []
+    }
+
+  }
+
+  render() {
+    return (
+      <section className="App">
+        <Header />
+      </section>
+    );
+  }
+  
 }
 
 export default App;

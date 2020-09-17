@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import './App.css';
 import Header from '../Header/Header';
 import SearchForm from '../SearchForm/SearchForm'
-import ApiCalls from '../helpers/ApiCalls'
+import ApiCalls from '../helpers/apiCalls'
+import { Route } from 'react-router-dom'
 
 class App extends Component {
   constructor() {
@@ -38,11 +39,15 @@ class App extends Component {
     return (
       <section className="App">
         <Header />
-        <SearchForm 
-          getSearchResults={this.getSearchResults}
-          error={this.state.error}
-        />
-      </section>
+          <Route exact to='/' render={() => 
+            <main>
+              <SearchForm 
+                getSearchResults={this.getSearchResults}
+                error={this.state.error}
+              />
+            </main>
+          }/>
+        </section>
     );
   }
   

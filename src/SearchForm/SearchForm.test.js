@@ -29,5 +29,21 @@ describe('Search Form', () => {
     expect(searchBtn).toBeInTheDocument(); 
   });
 
+  it('should display an error message if an error is passed down in props', () => {
+
+    render(
+      <BrowserRouter>
+        <SearchForm
+          getSearchResults={jest.fn()}
+          error={'Sorry, we couldn\'t find any results in Sweden.'}
+        />
+      </BrowserRouter>
+    )
+
+    const errorMsg = screen.getByText('Sorry, we couldn\'t find any results in Sweden.')
+
+    expect(errorMsg).toBeInTheDocument(); 
+  });
+
 
 })

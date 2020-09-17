@@ -31,13 +31,11 @@ class SearchForm extends Component {
           <p>Thirsting for the best brews in the top US cities? Let us help you plan your next brew-tastic city vacation.</p>
         </section>
         <form className='city-search-form'>
-          <label htmlFor='search'> Search the city you plan to visit below to see a list of breweries, bars, and brewpubs in the area.</label>
+          <label htmlFor='search' className='search-label'> Search the city you plan to visit below to see a list of breweries, bars, and brewpubs in the area.</label>
           <input id='search' type='text' placeholder='Enter a city name' value={this.state.searchTerm} onChange={this.handleChange}/>
-          <input type='submit' value='Search' onClick={this.handleSubmit}/>
+          <p className='error'>{this.props.error ? this.props.error : ''}</p>
+          <input type='submit' value='Search' className='search-btn' onClick={this.handleSubmit}/>
         </form>
-        {this.props.error && 
-          <p>{this.props.error}</p>
-        }
       </section>
     )
   }

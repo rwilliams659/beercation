@@ -86,7 +86,25 @@ describe('Search Form', () => {
     expect(mockGetSearchResults).toBeCalledWith('Denver')
   });
 
+  it('should disable the form button when the input has no value', () => {
 
+    const mockGetSearchResults = jest.fn();
+
+    render(
+      <BrowserRouter>
+        <SearchForm
+          getSearchResults={mockGetSearchResults}
+          error=''
+        />
+      </BrowserRouter>
+    )
+
+    const searchBar = screen.getByPlaceholderText('Enter a city name');
+    const searchBtn = screen.getByRole('button');
+
+    fireEvent.change(searchBar, { target: { value: '' } });
+    fireEvent.click(searchBtn);
+
+    expect(mockGetSearchResults).toHaveBeenCalledTimes(0);
+  });
 })
-
-//sad path for handleSubmit; error msg? or disable btn until has value

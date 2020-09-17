@@ -63,5 +63,30 @@ describe('Search Form', () => {
     expect(searchBar.value).toBe('Denver');
   });
 
+  it('should fire handleSubmit when the search button is clicked', () => {
+
+    const mockGetSearchResults = jest.fn(); 
+
+    render(
+      <BrowserRouter>
+        <SearchForm
+          getSearchResults={mockGetSearchResults}
+          error=''
+        />
+      </BrowserRouter>
+    )
+
+    const searchBar = screen.getByPlaceholderText('Enter a city name');
+    const searchBtn = screen.getByRole('button');
+
+    fireEvent.change(searchBar, { target: { value: 'Denver' } });
+    fireEvent.click(searchBtn);
+
+    expect(mockGetSearchResults).toHaveBeenCalledTimes(1);
+    expect(mockGetSearchResults).toBeCalledWith('Denver')
+  });
+
 
 })
+
+//sad path for handleSubmit; error msg? or disable btn until has value

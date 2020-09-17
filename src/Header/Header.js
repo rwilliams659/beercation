@@ -11,7 +11,7 @@ const Header = () => {
         <img src={logo} alt='BEERCATION'/>
       </section>
       <nav>
-          <NavLink to='/' className='nav-link'>HOME</NavLink>
+        <NavLink to='/' className='nav-link'>HOME</NavLink>
         <NavLink to='/to-visit' className='nav-link'>TO VISIT</NavLink>
         <NavLink to='visited' className='nav-link'>VISITED</NavLink>
       </nav>

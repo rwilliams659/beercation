@@ -18,13 +18,18 @@ class App extends Component {
   }
 
   getSearchResults = (searchTerm) => {
+    this.setState({ error: ''})
     Promise.all([
       this.apiCalls.fetchSearchResults(searchTerm, 1),
       this.apiCalls.fetchSearchResults(searchTerm, 2)
     ])
       .then(([response1, response2]) => {
         const searchResults = response1.concat(response2)
-        this.setState({ searchResults})
+        if (searchResults.length === 0) {
+          this.setState({ error: `Sorry, we couldn't find any results in ${searchTerm}.` })
+        } else {
+          this.setState({ searchResults })
+        }
       })
       .catch(error => this.setState({ error }))
   }
@@ -35,6 +40,7 @@ class App extends Component {
         <Header />
         <SearchForm 
           getSearchResults={this.getSearchResults}
+          error={this.state.error}
         />
       </section>
     );

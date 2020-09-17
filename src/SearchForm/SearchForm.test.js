@@ -1,6 +1,6 @@
 import React from 'react'
 import SearchForm from './SearchForm'
-import { render, screen } from '@testing-library/react'
+import { render, screen, fireEvent } from '@testing-library/react'
 import '@testing-library/jest-dom'
 import { BrowserRouter } from 'react-router-dom'
 
@@ -43,6 +43,24 @@ describe('Search Form', () => {
     const errorMsg = screen.getByText('Sorry, we couldn\'t find any results in Sweden.')
 
     expect(errorMsg).toBeInTheDocument(); 
+  });
+
+  it('when a user types in a search term, the input value should reflect what was typed', () => {
+
+    render(
+      <BrowserRouter>
+        <SearchForm
+          getSearchResults={jest.fn()}
+          error=''
+        />
+      </BrowserRouter>
+    )
+
+    const searchBar = screen.getByPlaceholderText('Enter a city name');
+
+    fireEvent.change(searchBar, {target: {value: 'Denver'}});
+
+    expect(searchBar.value).toBe('Denver');
   });
 
 

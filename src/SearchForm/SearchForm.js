@@ -6,7 +6,6 @@ class SearchForm extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      // error: '',
       searchTerm: '',
     }
   }
@@ -18,7 +17,10 @@ class SearchForm extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    this.props.getSearchResults(this.state.searchTerm); 
+    if (this.state.searchTerm) {
+      this.props.getSearchResults(this.state.searchTerm); 
+    }
+    this.setState({ searchTerm: ''})
   }
 
   render() {
@@ -33,13 +35,17 @@ class SearchForm extends Component {
           <input id='search' type='text' placeholder='Enter a city name' value={this.state.searchTerm} onChange={this.handleChange}/>
           <input type='submit' value='Search' onClick={this.handleSubmit}/>
         </form>
+        {this.props.error && 
+          <p>{this.props.error}</p>
+        }
       </section>
     )
   }
 }
 
 SearchForm.propTypes = {
-  getSearchResults: propTypes.func.isRequired
+  getSearchResults: propTypes.func.isRequired,
+  error: propTypes.string
 }
 
 export default SearchForm

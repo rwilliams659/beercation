@@ -1,0 +1,35 @@
+header {
+  display: flex;
+  justify-content: space-between;
+  background-image: url('../images/asfalt-wallpaper.png')
+}
+
+.header-logo {
+  display: flex;
+  cursor: pointer;
+}
+
+h1 {
+  font-size: 3em; 
+  margin: 0;
+  padding: 0.3em 0.2em 0.2em 0.5em; 
+  color: #4B1F18;
+  text-shadow: 2px 2px white;
+}
+
+img {
+  height: 4em;
+}
+
+nav {
+  align-self: center;
+  padding-right: 1em; 
+}
+
+.nav-link {
+  color: #4B1F18;
+  font-size: 1.2em;
+  padding-left: 1.5em;
+  text-decoration: none;
+  font-weight: bold;
+}

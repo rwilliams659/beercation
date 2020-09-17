@@ -10,6 +10,11 @@ class SearchForm extends Component {
     }
   }
 
+  handleChange = event => {
+    const searchTerm = event.target.value
+    this.setState({ searchTerm })
+  }
+
   render() {
     return (
       <section className='SearchForm'>
@@ -19,7 +24,7 @@ class SearchForm extends Component {
         </section>
         <form className='city-search-form'>
           <label htmlFor='search'> Search the city you plan to visit below to see a list of breweries, bars, and brewpubs in the area.</label>
-          <input id='search' type='text' placeholder='Enter a city name' value={this.state.searchTerm}/>
+          <input id='search' type='text' placeholder='Enter a city name' value={this.state.searchTerm} onChange={this.handleChange}/>
           <input type='submit' value='Search'/>
         </form>
       </section>

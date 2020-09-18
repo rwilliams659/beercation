@@ -37,3 +37,21 @@ nav {
 .nav-link:hover {
   color: #0101fc;
 }
+
+@media screen and (max-width: 660px) {
+  header {
+    flex-direction: column;
+  }
+}
+
+@media screen and (max-width: 360px) {
+  .header-logo {
+    flex-direction: column;
+  }
+  img {
+    display: none;
+  }
+  .nav-link{
+    padding-left: 0.5em;
+  }
+}

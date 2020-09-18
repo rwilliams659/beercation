@@ -6,10 +6,13 @@ import BreweryCard from '../BreweryCard/BreweryCard'
 import FilterForm from '../FilterForm/FilterForm'
 
 const Breweries = ({ searchResults, addBreweryToUserList, breweriesToVisit, breweriesVisited, filterSearchResults, filteredSearchResults }) => {
+  let results; 
   if (filteredSearchResults.length > 0) {
-    searchResults = filteredSearchResults;
+    results = filteredSearchResults;
+  } else {
+    results = searchResults
   }
-  const sortedSearchResults = searchResults.sort((a,b) => (a.name < b.name) ? -1 : (a.name > b.name) ? 1 : 0)
+  const sortedSearchResults = results.sort((a,b) => (a.name < b.name) ? -1 : (a.name > b.name) ? 1 : 0)
 
   const cards = sortedSearchResults.map(brewery => {
     const inBreweriesToVisit = breweriesToVisit.find(id => id === brewery.id) || null

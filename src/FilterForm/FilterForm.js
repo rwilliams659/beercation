@@ -29,7 +29,17 @@ class FilterForm extends Component {
         return key
       }
     });
-    this.props.filterSearchResults(searchTerms)
+    this.props.filterSearchResults(searchTerms);
+  }
+
+  componentDidUpdate(prevProps) {
+    if (this.props.searchResults !== prevProps.searchResults) {
+      this.clearCheckboxes()
+    }
+  }
+
+  clearCheckboxes = () => {
+    this.setState({bar: false, brewpub: false, micro: false, large: false, regional: false, other: false})
   }
 
   render() {

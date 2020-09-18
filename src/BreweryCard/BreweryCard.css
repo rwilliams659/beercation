@@ -1,0 +1,68 @@
+.BreweryCard {
+  height: 11em;
+  background-image: url('../images/buried-wallpaper.png');
+  display: flex;
+  flex-direction: column;
+}
+
+.BreweryCard:hover {
+  background-image: none;
+  background-color: #282828;
+}
+
+.icons-tags {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5em 0em 0 0.5em;
+}
+
+.tag1, .tag2 {
+  padding: 0.3em;
+  border-radius: 1em 0 0 1em;
+  margin-top: 0.3em;
+  margin-bottom: 0;
+}
+
+.tag1:hover, .tag2:hover {
+  transform: scale(1.1);
+}
+
+.tag1 {
+  background-color: #029c25;
+  color: black;
+}
+
+.tag2 {
+  background-color: #0101fc;
+}
+
+h3 {
+  margin: 0.5em 0.2em;
+}
+
+.type {
+  margin: 0;
+}
+
+.add-btns {
+  display: flex; 
+}
+
+.to-visit-btn {
+  background-color: #029c25;
+  margin-right: 0.2em;
+  margin-top: 0.3em;
+}
+
+.to-visit-btn:hover {
+  cursor: pointer;
+  background-color: #02791e;
+}
+
+.visited-btn {
+  background-color: #0101fc;
+  border: 1px solid black;
+  color: white;
+  margin-left: 0.2em;
+  margin-top: 0.3em
+}

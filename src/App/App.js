@@ -4,6 +4,7 @@ import Header from '../Header/Header';
 import SearchForm from '../SearchForm/SearchForm'
 import ApiCalls from '../helpers/apiCalls'
 import { Route } from 'react-router-dom'
+import Breweries from '../Breweries/Breweries';
 
 class App extends Component {
   constructor() {
@@ -27,12 +28,21 @@ class App extends Component {
       .then(([response1, response2]) => {
         const searchResults = response1.concat(response2)
         if (searchResults.length === 0) {
-          this.setState({ error: `Sorry, we couldn't find any results in ${searchTerm}.` })
+          this.setState({ error: `Sorry, we couldn't find any results in ${searchTerm}.` });
+          this.clearSearchResults(); 
         } else {
           this.setState({ searchResults })
         }
       })
       .catch(error => this.setState({ error }))
+  }
+
+  addBreweryToUserList = (id, list) => {
+    this.setState({ [list]: [...this.state[list], id]})
+  }
+
+  clearSearchResults = () => {
+    this.setState({ searchResults: [] })
   }
 
   render() {
@@ -44,6 +54,12 @@ class App extends Component {
               <SearchForm 
                 getSearchResults={this.getSearchResults}
                 error={this.state.error}
+              />
+              <Breweries
+                searchResults={this.state.searchResults}
+                addBreweryToUserList={this.addBreweryToUserList}
+                breweriesToVisit={this.state.breweriesToVisit}
+                breweriesVisited={this.state.breweriesVisited}
               />
             </main>
           }/>

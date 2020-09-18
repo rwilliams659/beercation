@@ -39,6 +39,9 @@ a {
   .brewery-cards {
     grid-template-columns: 1fr 1fr 1fr 1fr;
   }
+  .results-top-text {
+    flex-direction: column;
+  }
 }
 
 @media screen and (max-width: 750px) {

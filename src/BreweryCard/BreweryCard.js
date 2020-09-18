@@ -21,8 +21,8 @@ const BreweryCard = ({ name, type, id, addBreweryToUserList, inBreweriesToVisit,
       </section>
     </article>
     <section className='add-btns'>
-      <button className='to-visit-btn' onClick={() => addBreweryToUserList(id, 'breweriesToVisit')}>Mark as 'To Visit'</button>
-        <button className='visited-btn' onClick={() => addBreweryToUserList(id, 'breweriesVisited')}>Mark as 'Visited'</button>
+      <button className='to-visit-btn' onClick={() => addBreweryToUserList(id, 'breweriesToVisit')}>Mark as To Visit</button>
+        <button className='visited-btn' onClick={() => addBreweryToUserList(id, 'breweriesVisited')}>Mark as Visited</button>
     </section>
     </>
   )

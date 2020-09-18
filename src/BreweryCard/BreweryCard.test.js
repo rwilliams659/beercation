@@ -23,10 +23,14 @@ describe('BreweryCard', () => {
     const cardTitle = screen.getByRole('heading', {name: 'Denver Brews'});
     const cardType = screen.getByText('Type: bar');
     const icon = screen.getByAltText('bottle cap');
+    const toVisitBtn = screen.getByRole('button', { name: 'Mark as To Visit'});
+    const visitedBtn = screen.getByRole('button', { name: 'Mark as Visited'});
 
     expect(cardTitle).toBeInTheDocument(); 
     expect(cardType).toBeInTheDocument(); 
     expect(icon).toBeInTheDocument(); 
+    expect(toVisitBtn).toBeInTheDocument(); 
+    expect(visitedBtn).toBeInTheDocument(); 
   });
 
   it('should have a To Visit tag if brewery is in user\'s To Visit list', () => {

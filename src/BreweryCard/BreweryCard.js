@@ -32,7 +32,9 @@ BreweryCard.propTypes = {
   name: propTypes.string.isRequired,
   type: propTypes.string.isRequired,
   id: propTypes.number.isRequired,
-  addBreweryToUserList: propTypes.func.isRequired
+  addBreweryToUserList: propTypes.func.isRequired,
+  inBreweriesToVisit: propTypes.object,
+  inBreweriesVisited: propTypes.object
 }
 
 export default BreweryCard

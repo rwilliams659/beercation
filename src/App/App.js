@@ -28,7 +28,8 @@ class App extends Component {
       .then(([response1, response2]) => {
         const searchResults = response1.concat(response2)
         if (searchResults.length === 0) {
-          this.setState({ error: `Sorry, we couldn't find any results in ${searchTerm}.` })
+          this.setState({ error: `Sorry, we couldn't find any results in ${searchTerm}.` });
+          this.clearSearchResults(); 
         } else {
           this.setState({ searchResults })
         }
@@ -40,6 +41,9 @@ class App extends Component {
     this.setState({ [list]: [...this.state[list], id]})
   }
 
+  clearSearchResults = () => {
+    this.setState({ searchResults: [] })
+  }
 
   render() {
     return (

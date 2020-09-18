@@ -36,6 +36,11 @@ class App extends Component {
       .catch(error => this.setState({ error }))
   }
 
+  addBreweryToUserList = (id, list) => {
+    this.setState({ [list]: [...this.state[list], id]})
+  }
+
+
   render() {
     return (
       <section className="App">
@@ -48,6 +53,7 @@ class App extends Component {
               />
               <Breweries
                 searchResults={this.state.searchResults}
+                addBreweryToUserList={this.addBreweryToUserList}
               />
             </main>
           }/>

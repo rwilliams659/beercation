@@ -4,7 +4,7 @@ import propTypes from 'prop-types'
 import bottleCapIcon from '../images/bottle-cap.png'
 
 
-const BreweryCard = ({name, type}) => {
+const BreweryCard = ({ name, type, id, addBreweryToUserList }) => {
   return (
     <>
     <article className='BreweryCard'>
@@ -21,8 +21,8 @@ const BreweryCard = ({name, type}) => {
       </section>
     </article>
     <section className='add-btns'>
-      <button className='to-visit-btn'>Mark as 'To Visit'</button>
-      <button className='visited-btn'>Mark as 'Visited'</button>
+      <button className='to-visit-btn' onClick={() => addBreweryToUserList(id, 'breweriesToVisit')}>Mark as 'To Visit'</button>
+        <button className='visited-btn' onClick={() => addBreweryToUserList(id, 'breweriesVisited')}>Mark as 'Visited'</button>
     </section>
     </>
   )
@@ -30,7 +30,9 @@ const BreweryCard = ({name, type}) => {
 
 BreweryCard.propTypes = {
   name: propTypes.string.isRequired,
-  type: propTypes.string.isRequired
+  type: propTypes.string.isRequired,
+  id: propTypes.number.isRequired,
+  addBreweryToUserList: propTypes.func.isRequired
 }
 
 export default BreweryCard

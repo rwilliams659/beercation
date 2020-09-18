@@ -13,6 +13,8 @@ describe('BreweryCard', () => {
           name='Denver Brews'
           type='bar'
           id={1}
+          city='Denver'
+          state='Colorado'
           addBreweryToUserList={jest.fn()}
           inBreweriesToVisit={null}
           inBreweriesVisited={null}
@@ -23,12 +25,16 @@ describe('BreweryCard', () => {
     const cardTitle = screen.getByRole('heading', {name: 'Denver Brews'});
     const cardType = screen.getByText('Type: bar');
     const icon = screen.getByAltText('bottle cap');
+    const type = screen.getByText('Type: bar');
+    const location = screen.getByText('Denver, Colorado')
     const toVisitBtn = screen.getByRole('button', { name: 'Mark as To Visit'});
     const visitedBtn = screen.getByRole('button', { name: 'Mark as Visited'});
 
     expect(cardTitle).toBeInTheDocument(); 
     expect(cardType).toBeInTheDocument(); 
     expect(icon).toBeInTheDocument(); 
+    expect(type).toBeInTheDocument(); 
+    expect(location).toBeInTheDocument(); 
     expect(toVisitBtn).toBeInTheDocument(); 
     expect(visitedBtn).toBeInTheDocument(); 
   });
@@ -57,6 +63,8 @@ describe('BreweryCard', () => {
           name='Denver Brews'
           type='bar'
           id={1}
+          city='Denver'
+          state='Colorado'
           addBreweryToUserList={jest.fn()}
           inBreweriesToVisit={breweryToVisit}
           inBreweriesVisited={null}
@@ -93,6 +101,8 @@ describe('BreweryCard', () => {
           name='Denver Brews'
           type='bar'
           id={1}
+          city='Denver'
+          state='Colorado'
           addBreweryToUserList={jest.fn()}
           inBreweriesToVisit={null}
           inBreweriesVisited={breweryVisited}
@@ -114,6 +124,8 @@ describe('BreweryCard', () => {
           name='Denver Brews'
           type='bar'
           id={1}
+          city='Denver'
+          state='Colorado'
           addBreweryToUserList={mockAddBreweryToUserList}
           inBreweriesToVisit={null}
           inBreweriesVisited={null}

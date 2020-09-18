@@ -4,6 +4,7 @@ import Header from '../Header/Header';
 import SearchForm from '../SearchForm/SearchForm'
 import ApiCalls from '../helpers/apiCalls'
 import { Route } from 'react-router-dom'
+import Breweries from '../Breweries/Breweries';
 
 class App extends Component {
   constructor() {
@@ -44,6 +45,9 @@ class App extends Component {
               <SearchForm 
                 getSearchResults={this.getSearchResults}
                 error={this.state.error}
+              />
+              <Breweries
+                searchResults={this.state.searchResults}
               />
             </main>
           }/>

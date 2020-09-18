@@ -6,11 +6,14 @@ import BreweryCard from '../BreweryCard/BreweryCard'
 
 const Breweries = ({searchResults}) => {
   //once have filteredSearchResults, pass those down as well from App; if those exist (i.e. not an empty array, reassign searchResults to the value of filteredSearchResults)
-  const cards = searchResults.map(brewery => {
+  const sortedSearchResults = searchResults.sort((a,b) => (a.name < b.name) ? -1 : (a.name > b.name) ? 1 : 0)
+
+  const cards = sortedSearchResults.map(brewery => {
       return (
         <Link to={`/breweries/${brewery.id}`} key={brewery.id}>
           <BreweryCard
             name={brewery.name}
+            type={brewery.brewery_type}
           />
         </Link>
       )

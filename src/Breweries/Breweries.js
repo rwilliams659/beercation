@@ -5,7 +5,7 @@ import propTypes from 'prop-types'
 import BreweryCard from '../BreweryCard/BreweryCard'
 import FilterForm from '../FilterForm/FilterForm'
 
-const Breweries = ({ searchResults, addBreweryToUserList, breweriesToVisit, breweriesVisited }) => {
+const Breweries = ({ searchResults, addBreweryToUserList, breweriesToVisit, breweriesVisited, filterSearchResults, filteredSearchResults }) => {
   //once have filteredSearchResults, pass those down as well from App; if those exist (i.e. not an empty array, reassign searchResults to the value of filteredSearchResults)
   const sortedSearchResults = searchResults.sort((a,b) => (a.name < b.name) ? -1 : (a.name > b.name) ? 1 : 0)
 
@@ -34,6 +34,7 @@ const Breweries = ({ searchResults, addBreweryToUserList, breweriesToVisit, brew
           <section className='results-top-text'>
             <FilterForm 
               searchResults={searchResults}
+              filterSearchResults={filterSearchResults}
             />
             <h2 className='results-heading'>Search Results</h2>
             <div className='extra-space'></div>
@@ -51,7 +52,9 @@ Breweries.propTypes = {
   searchResults: propTypes.array.isRequired,
   addBreweryToUserList: propTypes.func.isRequired,
   breweriesToVisit: propTypes.array.isRequired,
-  breweriesVisited: propTypes.array.isRequired
+  breweriesVisited: propTypes.array.isRequired,
+  filterSearchResults: propTypes.func.isRequired,
+  filteredSearchResults: propTypes.array.isRequired
 }
 
 

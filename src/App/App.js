@@ -37,6 +37,12 @@ class App extends Component {
       .catch(error => this.setState({ error }))
   }
 
+  filterSearchResults = (searchTerms) => {
+    //take in array of search terms
+    //filter this.state.searchResults with those terms via the type
+    //setState with filteredSearchResults
+  }
+
   addBreweryToUserList = (id, list) => {
     this.setState({ [list]: [...this.state[list], id]})
   }
@@ -60,6 +66,8 @@ class App extends Component {
                 addBreweryToUserList={this.addBreweryToUserList}
                 breweriesToVisit={this.state.breweriesToVisit}
                 breweriesVisited={this.state.breweriesVisited}
+                filterSearchResults={this.filterSearchResults}
+                filteredSearchResults={this.state.filteredSearchResults}
               />
             </main>
           }/>

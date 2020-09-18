@@ -21,6 +21,17 @@ class FilterForm extends Component {
     this.setState( { [name]: value})
   }
 
+  handleFilterClick = (event) => {
+    event.preventDefault()
+    const stateKeys = Object.keys(this.state);
+    const searchTerms = stateKeys.filter(key => {
+      if (this.state[key]) {
+        return key
+      }
+    });
+    this.props.filterSearchResults(searchTerms)
+  }
+
   render() {
     return (
       <section className='FilterForm'>
@@ -42,7 +53,7 @@ class FilterForm extends Component {
             <input type='checkbox' id='option6' name='other' checked={this.state.other} onChange={this.handleInputChange}/>
             <label htmlFor='option6'>Other</label>
           </section>
-          <button className='filter-btn'>Filter search</button>
+          <button className='filter-btn' onClick={this.handleFilterClick}>Filter search</button>
         </form>
         </section>
     )
@@ -50,7 +61,8 @@ class FilterForm extends Component {
 }
 
 FilterForm.propTypes = {
-  searchResults: propTypes.array.isRequired
+  searchResults: propTypes.array.isRequired,
+  filterSearchResults: propTypes.func.isRequired
 }
 
 

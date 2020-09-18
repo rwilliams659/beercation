@@ -1,0 +1,30 @@
+.BreweryCard {
+  padding: .5em;
+  height: 10em;
+  border: 1px solid black;
+  background-color: #404040;
+}
+
+.add-btns {
+  display: flex; 
+}
+
+.to-visit-btn {
+  background-color: #FCBE01;
+  /* border: 1px solid black; */
+  margin-right: 0.2em;
+  margin-top: 0.3em;
+}
+
+.to-visit-btn:hover {
+  cursor: pointer;
+  background-color: #d4a002;
+}
+
+.visited-btn {
+  background-color: #0101fc;
+  border: 1px solid black;
+  color: white;
+  margin-left: 0.2em;
+  margin-top: 0.3em
+}

@@ -1,5 +1,5 @@
 import React from 'react'
-import './Breweries.test'
+import './Breweries.css'
 import { Link } from 'react-router-dom'
 import propTypes from 'prop-types'
 import BreweryCard from '../BreweryCard/BreweryCard'
@@ -18,13 +18,20 @@ const Breweries = ({searchResults}) => {
 
   return (
     <section className='Breweries'>
-      {cards}
+      {searchResults.length > 0 &&
+        <>
+          <h2 className='results-heading'>Search Results</h2>
+            <section className='brewery-cards'>
+              {cards}
+            </section>
+        </>
+       }
     </section>
   )
 }
 
 Breweries.propTypes = {
-  searchResults: propTypes.array
+  searchResults: propTypes.array.isRequired
 }
 
 

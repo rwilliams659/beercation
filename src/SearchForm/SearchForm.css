@@ -38,7 +38,7 @@ p {
   color: white; 
 }
 
-.search-btn:hover:enabled {
+.search-btn:hover:enabled, .visited-btn:hover {
   background-color: #0101B3;
   cursor: pointer;
 }

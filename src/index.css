@@ -5,6 +5,8 @@ body {
   -moz-osx-font-smoothing: grayscale;
   background-image: url('./images/beer-background.jpg');
   background-size: cover;
+  background-repeat: repeat-y;
+  background-attachment: fixed;
 }
 
 h1, h2, h3, h4 {

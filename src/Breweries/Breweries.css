@@ -1,0 +1,21 @@
+.Breweries {
+  background-image: url('../images/asfalt-wallpaper.png');
+  margin: 2em; 
+}
+
+.brewery-cards {
+  padding: 2em;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-gap: 1em;  
+}
+
+.results-heading {
+  padding-top: 1em; 
+  margin-bottom: 0;
+}
+
+a {
+  text-decoration: none;
+  color: white;
+}

@@ -9,22 +9,21 @@ const Breweries = ({ searchResults, addBreweryToUserList, breweriesToVisit, brew
   const sortedSearchResults = searchResults.sort((a,b) => (a.name < b.name) ? -1 : (a.name > b.name) ? 1 : 0)
 
   const cards = sortedSearchResults.map(brewery => {
-
     const inBreweriesToVisit = breweriesToVisit.find(id => id === brewery.id) || null
     const inBreweriesVisited = breweriesVisited.find(id => id === brewery.id) || null
 
-      return (
-        <Link to={`/breweries/${brewery.id}`} key={brewery.id}>
-          <BreweryCard
-            name={brewery.name}
-            type={brewery.brewery_type}
-            id={brewery.id}
-            addBreweryToUserList={addBreweryToUserList}
-            inBreweriesToVisit={inBreweriesToVisit}
-            inBreweriesVisited={inBreweriesVisited}
-          />
-        </Link>
-      )
+    return (
+      <Link to={`/breweries/${brewery.id}`} key={brewery.id}>
+        <BreweryCard
+          name={brewery.name}
+          type={brewery.brewery_type}
+          id={brewery.id}
+          addBreweryToUserList={addBreweryToUserList}
+          inBreweriesToVisit={inBreweriesToVisit}
+          inBreweriesVisited={inBreweriesVisited}
+        />
+      </Link>
+    )
   })
 
   return (

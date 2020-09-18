@@ -18,7 +18,6 @@ class FilterForm extends Component {
   handleInputChange = (event) => {
     const name = event.target.name
     const value = event.target.checked
-    console.log(value);
     this.setState( { [name]: value})
   }
 
@@ -43,6 +42,7 @@ class FilterForm extends Component {
             <input type='checkbox' id='option6' name='other' checked={this.state.other} onChange={this.handleInputChange}/>
             <label htmlFor='option6'>Other</label>
           </section>
+          <button className='filter-btn'>Filter search</button>
         </form>
         </section>
     )

@@ -38,9 +38,13 @@ class App extends Component {
   }
 
   filterSearchResults = (searchTerms) => {
-    //take in array of search terms
-    //filter this.state.searchResults with those terms via the type
-    //setState with filteredSearchResults
+    if (searchTerms.includes('other')) {
+      const targetIndex = searchTerms.indexOf('other')
+      searchTerms.splice(1, targetIndex)
+      searchTerms = searchTerms.concat(['planning', 'proprietor', 'contract'])
+    }
+    const filteredSearchResults = this.state.searchResults.filter(result => searchTerms.includes(result.brewery_type));
+    this.setState({ filteredSearchResults})
   }
 
   addBreweryToUserList = (id, list) => {

@@ -63,7 +63,7 @@ describe('Search Form', () => {
     expect(searchBar.value).toBe('Denver');
   });
 
-  it('should fire handleSubmit when the search button is clicked', () => {
+  it('should fire getSearchResults when the search button is clicked', () => {
 
     const mockGetSearchResults = jest.fn(); 
 

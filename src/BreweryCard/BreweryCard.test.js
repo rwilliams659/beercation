@@ -1,6 +1,6 @@
 import React from 'react'
 import BreweryCard from './BreweryCard.js'
-import { render, screen } from '@testing-library/react'
+import { render, screen, fireEvent } from '@testing-library/react'
 import '@testing-library/jest-dom'
 import { BrowserRouter } from 'react-router-dom'
 
@@ -103,5 +103,32 @@ describe('BreweryCard', () => {
     const VisitedTag = screen.getByText('Visited', { exact: true });
 
     expect(VisitedTag).toBeInTheDocument();
+  });
+  it('should call addBreweryToUserList when either button below the brewery card is clicked', () => {
+
+    const mockAddBreweryToUserList = jest.fn();
+
+    render(
+      <BrowserRouter>
+        <BreweryCard
+          name='Denver Brews'
+          type='bar'
+          id={1}
+          addBreweryToUserList={mockAddBreweryToUserList}
+          inBreweriesToVisit={null}
+          inBreweriesVisited={null}
+        />
+      </BrowserRouter>
+    )
+
+    const toVisitBtn = screen.getByRole('button', { name: 'Mark as To Visit' });
+    const visitedBtn = screen.getByRole('button', { name: 'Mark as Visited' });
+    
+    fireEvent.click(toVisitBtn);
+    fireEvent.click(visitedBtn);
+
+    expect(mockAddBreweryToUserList).toHaveBeenCalledTimes(2);
+    expect(mockAddBreweryToUserList).toHaveBeenCalledWith(1, 'breweriesToVisit')
+    expect(mockAddBreweryToUserList).toHaveBeenCalledWith(1, 'breweriesVisited')
   })
 })

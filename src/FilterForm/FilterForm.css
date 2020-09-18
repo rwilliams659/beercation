@@ -1,0 +1,13 @@
+.filter-text, .FilterForm {
+  text-align: left; 
+}
+
+.FilterForm {
+  display: flex;
+  flex-direction: column; 
+  padding: 1em 1em 0 1em;
+}
+
+.row1 {
+  padding-bottom: 0.5em;
+}

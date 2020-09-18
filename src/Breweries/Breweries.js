@@ -3,6 +3,7 @@ import './Breweries.css'
 import { Link } from 'react-router-dom'
 import propTypes from 'prop-types'
 import BreweryCard from '../BreweryCard/BreweryCard'
+import FilterForm from '../FilterForm/FilterForm'
 
 const Breweries = ({ searchResults, addBreweryToUserList, breweriesToVisit, breweriesVisited }) => {
   //once have filteredSearchResults, pass those down as well from App; if those exist (i.e. not an empty array, reassign searchResults to the value of filteredSearchResults)
@@ -30,10 +31,14 @@ const Breweries = ({ searchResults, addBreweryToUserList, breweriesToVisit, brew
     <section className='Breweries'>
       {searchResults.length > 0 &&
         <>
-          <h2 className='results-heading'>Search Results</h2>
-            <section className='brewery-cards'>
-              {cards}
-            </section>
+          <section className='results-top-text'>
+            <FilterForm />
+            <h2 className='results-heading'>Search Results</h2>
+            <div className='extra-space'></div>
+          </section>
+          <section className='brewery-cards'>
+            {cards}
+          </section>
         </>
        }
     </section>

@@ -42,3 +42,22 @@ p {
   background-color: #0101B3;
   cursor: pointer;
 }
+
+@media screen and (max-width: 1000px) {
+  .intro-text {
+    background-image: url('../images/asfalt-wallpaper.png');
+    opacity: 0.8;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .city-search-form {
+    width: 80%;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .SearchForm {
+    margin: 1em;
+  }
+}

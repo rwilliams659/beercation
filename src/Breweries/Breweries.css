@@ -28,3 +28,33 @@ a {
 .extra-space {
   width: 255px; 
 }
+
+@media screen and (max-width: 1150px) {
+  .brewery-cards {
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  }
+}
+
+@media screen and (max-width: 950px) {
+  .brewery-cards {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+}
+
+@media screen and (max-width: 750px) {
+  .brewery-cards {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .brewery-cards {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .brewery-cards {
+    grid-template-columns: 1fr;
+  }
+}

@@ -5,7 +5,7 @@
 .FilterForm {
   display: flex;
   flex-direction: column; 
-  padding: 1em 1em 0 1em;
+  margin: 1em 1em 0 1em;
 }
 
 .row1 {

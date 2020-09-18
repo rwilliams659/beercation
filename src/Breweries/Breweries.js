@@ -32,7 +32,9 @@ const Breweries = ({ searchResults, addBreweryToUserList, breweriesToVisit, brew
       {searchResults.length > 0 &&
         <>
           <section className='results-top-text'>
-            <FilterForm />
+            <FilterForm 
+              searchResults={searchResults}
+            />
             <h2 className='results-heading'>Search Results</h2>
             <div className='extra-space'></div>
           </section>

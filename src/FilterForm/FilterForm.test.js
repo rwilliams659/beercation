@@ -56,5 +56,28 @@ describe('FilterForm', () => {
     expect(input1.checked).toBe(true);
     expect(input2.checked).toBe(false);
     expect(input3.checked).toBe(true);
+  });
+
+  it('should call filterSearchResults after user selects filter terms and clicks the filter button', () => {
+
+    const mockFilterSearchResults = jest.fn()
+
+    render(
+      <BrowserRouter>
+        <FilterForm
+          searchResults={[]}
+          filterSearchResults={mockFilterSearchResults}
+        />
+      </BrowserRouter>
+    )
+
+    const input1 = screen.getByRole('checkbox', { name: 'Bar' });
+    const filterBtn = screen.getByRole('button', { name: 'Filter search' })
+
+    fireEvent.click(input1);
+    fireEvent.click(filterBtn);
+
+    expect(mockFilterSearchResults).toHaveBeenCalledTimes(1);
+    expect(mockFilterSearchResults).toHaveBeenCalledWith(['bar']);
   })
 })

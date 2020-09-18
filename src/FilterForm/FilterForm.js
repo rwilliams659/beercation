@@ -77,6 +77,3 @@ FilterForm.propTypes = {
 
 
 export default FilterForm
-
-
-// bar, brewpub, micro, large, regional, other (planning, contract, proprietor)

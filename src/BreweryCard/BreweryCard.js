@@ -4,15 +4,15 @@ import propTypes from 'prop-types'
 import bottleCapIcon from '../images/bottle-cap.png'
 
 
-const BreweryCard = ({ name, type, id, addBreweryToUserList }) => {
+const BreweryCard = ({ name, type, id, addBreweryToUserList, inBreweriesToVisit, inBreweriesVisited }) => {
   return (
     <>
     <article className='BreweryCard'>
       <section className='icons-tags'>
         <img src={bottleCapIcon} alt='bottle cap'/>
         <div>
-          <p className='tag1'>To Visit</p>
-          <p className='tag2'>Visited</p>
+          { inBreweriesToVisit? <p className='tag1'>To Visit</p> : '' }
+          { inBreweriesVisited ? <p className='tag2'>Visited</p> : '' }
         </div>
       </section>
       <section className='card-content'>

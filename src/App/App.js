@@ -54,6 +54,8 @@ class App extends Component {
               <Breweries
                 searchResults={this.state.searchResults}
                 addBreweryToUserList={this.addBreweryToUserList}
+                breweriesToVisit={this.state.breweriesToVisit}
+                breweriesVisited={this.state.breweriesVisited}
               />
             </main>
           }/>

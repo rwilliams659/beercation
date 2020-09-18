@@ -4,11 +4,15 @@ import { Link } from 'react-router-dom'
 import propTypes from 'prop-types'
 import BreweryCard from '../BreweryCard/BreweryCard'
 
-const Breweries = ({ searchResults, addBreweryToUserList }) => {
+const Breweries = ({ searchResults, addBreweryToUserList, breweriesToVisit, breweriesVisited }) => {
   //once have filteredSearchResults, pass those down as well from App; if those exist (i.e. not an empty array, reassign searchResults to the value of filteredSearchResults)
   const sortedSearchResults = searchResults.sort((a,b) => (a.name < b.name) ? -1 : (a.name > b.name) ? 1 : 0)
 
   const cards = sortedSearchResults.map(brewery => {
+
+    const inBreweriesToVisit = breweriesToVisit.find(id => id === brewery.id) || null
+    const inBreweriesVisited = breweriesVisited.find(id => id === brewery.id) || null
+
       return (
         <Link to={`/breweries/${brewery.id}`} key={brewery.id}>
           <BreweryCard
@@ -16,6 +20,8 @@ const Breweries = ({ searchResults, addBreweryToUserList }) => {
             type={brewery.brewery_type}
             id={brewery.id}
             addBreweryToUserList={addBreweryToUserList}
+            inBreweriesToVisit={inBreweriesToVisit}
+            inBreweriesVisited={inBreweriesVisited}
           />
         </Link>
       )
@@ -37,7 +43,9 @@ const Breweries = ({ searchResults, addBreweryToUserList }) => {
 
 Breweries.propTypes = {
   searchResults: propTypes.array.isRequired,
-  addBreweryToUserList: propTypes.func.isRequired
+  addBreweryToUserList: propTypes.func.isRequired,
+  breweriesToVisit: propTypes.array.isRequired,
+  breweriesVisited: propTypes.array.isRequired
 }
 
 

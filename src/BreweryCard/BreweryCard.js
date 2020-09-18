@@ -4,12 +4,21 @@ import propTypes from 'prop-types'
 import bottleCapIcon from '../images/bottle-cap.png'
 
 
-const BreweryCard = ({name}) => {
+const BreweryCard = ({name, type}) => {
   return (
     <>
     <article className='BreweryCard'>
-      <img src={bottleCapIcon} alt='bottle cap'/>
-      <h3>{name}</h3>
+      <section className='icons-tags'>
+        <img src={bottleCapIcon} alt='bottle cap'/>
+        <div>
+          <p className='tag1'>To Visit</p>
+          <p className='tag2'>Visited</p>
+        </div>
+      </section>
+      <section className='card-content'>
+        <h3>{name}</h3>
+        <p className='type'>Type: {type}</p>
+      </section>
     </article>
     <section className='add-btns'>
       <button className='to-visit-btn'>Mark as 'To Visit'</button>
@@ -20,7 +29,8 @@ const BreweryCard = ({name}) => {
 }
 
 BreweryCard.propTypes = {
-  name: propTypes.string.isRequired
+  name: propTypes.string.isRequired,
+  type: propTypes.string.isRequired
 }
 
 export default BreweryCard

@@ -21,6 +21,7 @@ class App extends Component {
 
   getSearchResults = (searchTerm) => {
     this.setState({ error: ''})
+    this.clearSearchResults('filteredSearchResults'); 
     Promise.all([
       this.apiCalls.fetchSearchResults(searchTerm, 1),
       this.apiCalls.fetchSearchResults(searchTerm, 2)
@@ -29,7 +30,7 @@ class App extends Component {
         const searchResults = response1.concat(response2)
         if (searchResults.length === 0) {
           this.setState({ error: `Sorry, we couldn't find any results in ${searchTerm}.` });
-          this.clearSearchResults(); 
+          this.clearSearchResults('searchResults'); 
         } else {
           this.setState({ searchResults })
         }
@@ -51,8 +52,8 @@ class App extends Component {
     this.setState({ [list]: [...this.state[list], id]})
   }
 
-  clearSearchResults = () => {
-    this.setState({ searchResults: [] })
+  clearSearchResults = (listToClear) => {
+    this.setState({ [listToClear]: [] })
   }
 
   render() {

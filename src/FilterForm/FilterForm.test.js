@@ -1,6 +1,6 @@
 import React from 'react'
 import FilterForm from './FilterForm'
-import { render, screen } from '@testing-library/react'
+import { render, screen, fireEvent } from '@testing-library/react'
 import '@testing-library/jest-dom'
 import { BrowserRouter } from 'react-router-dom'
 
@@ -33,5 +33,28 @@ describe('FilterForm', () => {
     expect(input5).toBeInTheDocument();
     expect(input6).toBeInTheDocument();
     expect(filterBtn).toBeInTheDocument();
+  });
+
+  it('when a user selects filter terms, their checked values should reflect what was chosen', () => {
+
+    render(
+      <BrowserRouter>
+        <FilterForm
+          searchResults={[]}
+          filterSearchResults={jest.fn()}
+        />
+      </BrowserRouter>
+    )
+
+    const input1 = screen.getByRole('checkbox', { name: 'Bar' });
+    const input2 = screen.getByRole('checkbox', { name: 'Brewpub' });
+    const input3 = screen.getByRole('checkbox', { name: 'Microbrewery' });
+
+    fireEvent.click(input1); 
+    fireEvent.click(input3)
+
+    expect(input1.checked).toBe(true);
+    expect(input2.checked).toBe(false);
+    expect(input3.checked).toBe(true);
   })
 })

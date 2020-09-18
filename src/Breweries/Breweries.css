@@ -10,12 +10,21 @@
   grid-gap: 1.2em;  
 }
 
+.results-top-text {
+  display: flex;
+  justify-content: space-between;
+}
+
 .results-heading {
-  padding-top: 1em; 
   margin-bottom: 0;
+  align-self: center; 
 }
 
 a {
   text-decoration: none;
   color: white
+}
+
+.extra-space {
+  width: 255px; 
 }

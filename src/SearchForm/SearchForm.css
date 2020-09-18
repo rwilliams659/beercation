@@ -29,7 +29,7 @@ p {
   padding: .3em; 
 }
 
-.search-btn {
+.search-btn, .filter-btn {
   border: none;
   border-radius: 1em; 
   width: auto;
@@ -38,7 +38,7 @@ p {
   color: white; 
 }
 
-.search-btn:hover:enabled, .visited-btn:hover {
+.search-btn:hover:enabled, .visited-btn:hover, .filter-btn:hover:enabled {
   background-color: #0101B3;
   cursor: pointer;
 }

@@ -21,6 +21,7 @@ class App extends Component {
 
   getSearchResults = (searchTerm) => {
     this.setState({ error: ''})
+    this.clearSearchResults('filteredSearchResults'); 
     Promise.all([
       this.apiCalls.fetchSearchResults(searchTerm, 1),
       this.apiCalls.fetchSearchResults(searchTerm, 2)
@@ -29,7 +30,7 @@ class App extends Component {
         const searchResults = response1.concat(response2)
         if (searchResults.length === 0) {
           this.setState({ error: `Sorry, we couldn't find any results in ${searchTerm}.` });
-          this.clearSearchResults(); 
+          this.clearSearchResults('searchResults'); 
         } else {
           this.setState({ searchResults })
         }
@@ -37,12 +38,22 @@ class App extends Component {
       .catch(error => this.setState({ error }))
   }
 
+  filterSearchResults = (searchTerms) => {
+    if (searchTerms.includes('other')) {
+      const targetIndex = searchTerms.indexOf('other')
+      searchTerms.splice(1, targetIndex)
+      searchTerms = searchTerms.concat(['planning', 'proprietor', 'contract'])
+    }
+    const filteredSearchResults = this.state.searchResults.filter(result => searchTerms.includes(result.brewery_type));
+    this.setState({ filteredSearchResults})
+  }
+
   addBreweryToUserList = (id, list) => {
     this.setState({ [list]: [...this.state[list], id]})
   }
 
-  clearSearchResults = () => {
-    this.setState({ searchResults: [] })
+  clearSearchResults = (listToClear) => {
+    this.setState({ [listToClear]: [] })
   }
 
   render() {
@@ -60,6 +71,8 @@ class App extends Component {
                 addBreweryToUserList={this.addBreweryToUserList}
                 breweriesToVisit={this.state.breweriesToVisit}
                 breweriesVisited={this.state.breweriesVisited}
+                filterSearchResults={this.filterSearchResults}
+                filteredSearchResults={this.state.filteredSearchResults}
               />
             </main>
           }/>

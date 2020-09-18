@@ -3,10 +3,16 @@ import './Breweries.css'
 import { Link } from 'react-router-dom'
 import propTypes from 'prop-types'
 import BreweryCard from '../BreweryCard/BreweryCard'
+import FilterForm from '../FilterForm/FilterForm'
 
-const Breweries = ({ searchResults, addBreweryToUserList, breweriesToVisit, breweriesVisited }) => {
-  //once have filteredSearchResults, pass those down as well from App; if those exist (i.e. not an empty array, reassign searchResults to the value of filteredSearchResults)
-  const sortedSearchResults = searchResults.sort((a,b) => (a.name < b.name) ? -1 : (a.name > b.name) ? 1 : 0)
+const Breweries = ({ searchResults, addBreweryToUserList, breweriesToVisit, breweriesVisited, filterSearchResults, filteredSearchResults }) => {
+  let results; 
+  if (filteredSearchResults.length > 0) {
+    results = filteredSearchResults;
+  } else {
+    results = searchResults
+  }
+  const sortedSearchResults = results.sort((a,b) => (a.name < b.name) ? -1 : (a.name > b.name) ? 1 : 0)
 
   const cards = sortedSearchResults.map(brewery => {
     const inBreweriesToVisit = breweriesToVisit.find(id => id === brewery.id) || null
@@ -18,6 +24,8 @@ const Breweries = ({ searchResults, addBreweryToUserList, breweriesToVisit, brew
           name={brewery.name}
           type={brewery.brewery_type}
           id={brewery.id}
+          city={brewery.city}
+          state={brewery.state}
           addBreweryToUserList={addBreweryToUserList}
           inBreweriesToVisit={inBreweriesToVisit}
           inBreweriesVisited={inBreweriesVisited}
@@ -30,10 +38,17 @@ const Breweries = ({ searchResults, addBreweryToUserList, breweriesToVisit, brew
     <section className='Breweries'>
       {searchResults.length > 0 &&
         <>
-          <h2 className='results-heading'>Search Results</h2>
-            <section className='brewery-cards'>
-              {cards}
-            </section>
+          <section className='results-top-text'>
+            <FilterForm 
+              searchResults={searchResults}
+              filterSearchResults={filterSearchResults}
+            />
+            <h2 className='results-heading'>Search Results</h2>
+            <div className='extra-space'></div>
+          </section>
+          <section className='brewery-cards'>
+            {cards}
+          </section>
         </>
        }
     </section>
@@ -44,7 +59,9 @@ Breweries.propTypes = {
   searchResults: propTypes.array.isRequired,
   addBreweryToUserList: propTypes.func.isRequired,
   breweriesToVisit: propTypes.array.isRequired,
-  breweriesVisited: propTypes.array.isRequired
+  breweriesVisited: propTypes.array.isRequired,
+  filterSearchResults: propTypes.func.isRequired,
+  filteredSearchResults: propTypes.array.isRequired
 }
 
 

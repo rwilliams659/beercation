@@ -1,5 +1,5 @@
 .BreweryCard {
-  height: 11em;
+  height: 13em;
   background-image: url('../images/buried-wallpaper.png');
   display: flex;
   flex-direction: column;
@@ -41,7 +41,7 @@ h3 {
 }
 
 .type {
-  margin: 0;
+  margin: 0.5em;
 }
 
 .add-btns {

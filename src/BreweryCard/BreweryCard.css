@@ -1,11 +1,11 @@
-.BreweryCard {
+.card-body {
   height: 13em;
   background-image: url('../images/buried-wallpaper.png');
   display: flex;
   flex-direction: column;
 }
 
-.BreweryCard:hover {
+.card-body:hover {
   background-image: none;
   background-color: #282828;
 }

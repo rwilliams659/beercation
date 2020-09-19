@@ -7,28 +7,28 @@ import { Link } from 'react-router-dom'
 
 const BreweryCard = ({ name, type, id, city, state, addBreweryToUserList, inBreweriesToVisit, inBreweriesVisited }) => {
   return (
-    <>
-    <Link to={`/breweries/${id}`} key={id}>
-    <article className='BreweryCard'>
-      <section className='icons-tags'>
-        <img src={bottleCapIcon} alt='bottle cap'/>
-        <div>
-          { inBreweriesToVisit? <p className='tag1'>To Visit</p> : '' }
-          { inBreweriesVisited ? <p className='tag2'>Visited</p> : '' }
-        </div>
+    <section className='BreweryCard'>
+      <Link to={`/breweries/${id}`} key={id}>
+        <article className='card-body'>
+        <section className='icons-tags'>
+          <img src={bottleCapIcon} alt='bottle cap'/>
+          <div>
+            { inBreweriesToVisit? <p className='tag1'>To Visit</p> : '' }
+            { inBreweriesVisited ? <p className='tag2'>Visited</p> : '' }
+          </div>
+        </section>
+        <section className='card-content'>
+          <h3>{name}</h3>
+          <p className='type'>Type: {type}</p>
+          <p className='type'>{city}, {state}</p>
+        </section>
+      </article>
+      </Link>
+      <section className='add-btns'>
+        <button className='to-visit-btn' onClick={() => addBreweryToUserList(id, 'breweriesToVisit')}>Mark as To Visit</button>
+          <button className='visited-btn' onClick={() => addBreweryToUserList(id, 'breweriesVisited')}>Mark as Visited</button>
       </section>
-      <section className='card-content'>
-        <h3>{name}</h3>
-        <p className='type'>Type: {type}</p>
-        <p className='type'>{city}, {state}</p>
-      </section>
-    </article>
-    </Link>
-    <section className='add-btns'>
-      <button className='to-visit-btn' onClick={() => addBreweryToUserList(id, 'breweriesToVisit')}>Mark as To Visit</button>
-        <button className='visited-btn' onClick={() => addBreweryToUserList(id, 'breweriesVisited')}>Mark as Visited</button>
     </section>
-    </>
   )
 }
 

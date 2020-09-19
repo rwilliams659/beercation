@@ -6,6 +6,7 @@ import ApiCalls from '../helpers/apiCalls'
 import { Route } from 'react-router-dom'
 import Breweries from '../Breweries/Breweries';
 import UserSavedBreweries from '../UserSavedBreweries/UserSavedBreweries';
+import BreweryDetails from '../BreweryDetails/BreweryDetails';
 
 class App extends Component {
   constructor() {
@@ -49,15 +50,23 @@ class App extends Component {
     this.setState({ filteredSearchResults})
   }
 
-  toggleBreweryToUserList = (id, list) => {
-    const brewery = this.state.searchResults.find(brewery => brewery.id === id);
-    if (!this.state[list].includes(brewery)) {
-      this.setState({ [list]: [...this.state[list], brewery] });
-    } else {
+  toggleBreweryToUserList = (name, list) => {
+    const brewery = this.state[list].find(brewery => brewery.name === name)
+    if (brewery) {
       const newStateList = this.state[list]
       const targetIndex = this.state[list].indexOf(brewery);
-      newStateList.splice(targetIndex, 1); 
-      this.setState({ [list]: newStateList})
+      newStateList.splice(targetIndex, 1);
+      this.setState({ [list]: newStateList })
+    } else {
+      const formattedName = name.replace(/\s/g, '_')
+      this.apiCalls.fetchBreweryByName(formattedName)
+        .then(response => {
+          const brewery = response[0]
+          if (!this.state[list].includes(brewery)) {
+            this.setState({ [list]: [...this.state[list], brewery] });
+          }
+        })
+        .catch(error => alert(`Sorry, an error occurred with adding this brewery to your ${list} list.` ))
     }
   }
 
@@ -102,8 +111,16 @@ class App extends Component {
               toggleBreweryToUserList={this.toggleBreweryToUserList}
             />
           </main>
-        } />
-        </section>
+        }/>
+        <Route path='/breweries/:name/' render={({ match }) => 
+          <BreweryDetails 
+            name={match.params.name}
+            toggleBreweryToUserList={this.toggleBreweryToUserList}
+            breweriesVisited={this.state.breweriesVisited}
+            breweriesToVisit={this.state.breweriesToVisit}
+          />
+        }/>
+      </section>
     );
   }
   

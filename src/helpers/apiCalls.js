@@ -5,13 +5,20 @@ export default class ApiCalls {
 
   fetchSearchResults = (searchTerm, pageNum) => {
     return fetch(`${this.baseURL}by_city=${searchTerm}&per_page=50&page=${pageNum}`)
-    .then(response => {
-      if (!response.ok) {
-        throw new Error(response.statusText)
-      } else {
-        return response.json();
-      }
-    })
+      .then(response => this.checkResponse(response))
+  }
+
+  fetchBreweryByName = (name) => {
+    return fetch(`${this.baseURL}by_name=${name}`)
+      .then(response => this.checkResponse(response))
+  }
+
+  checkResponse = (response) => {
+    if (!response.ok) {
+      throw new Error(response.statusText)
+    } else {
+      return response.json();
+    }
   }
 
 }

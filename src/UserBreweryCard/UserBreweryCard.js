@@ -21,10 +21,10 @@ const UserBreweryCard = ({ name, type, id, city, state, view, toggleBreweryToUse
       </Link>
       <section className='add-btns'>
         {view === 'To Visit' &&
-          <button className='to-visit-btn rmv-btn' onClick={() => toggleBreweryToUserList(id, 'breweriesToVisit')}>Unmark as {view}</button>
+          <button className='to-visit-btn rmv-btn' onClick={() => toggleBreweryToUserList(name, 'breweriesToVisit')}>Unmark as {view}</button>
         }
         {view === 'Visited' &&
-          <button className='to-visit-btn rmv-btn' onClick={() => toggleBreweryToUserList(id, 'breweriesVisited')}>Unmark as {view}</button>
+          <button className='to-visit-btn rmv-btn' onClick={() => toggleBreweryToUserList(name, 'breweriesVisited')}>Unmark as {view}</button>
         }
       </section>
     </section>

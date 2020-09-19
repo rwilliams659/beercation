@@ -50,15 +50,23 @@ class App extends Component {
     this.setState({ filteredSearchResults})
   }
 
-  toggleBreweryToUserList = (id, list) => {
-    const brewery = this.state.searchResults.find(brewery => brewery.id === id);
-    if (!this.state[list].includes(brewery)) {
-      this.setState({ [list]: [...this.state[list], brewery] });
-    } else {
+  toggleBreweryToUserList = (name, list) => {
+    const brewery = this.state[list].find(brewery => brewery.name === name)
+    if (brewery) {
       const newStateList = this.state[list]
       const targetIndex = this.state[list].indexOf(brewery);
-      newStateList.splice(targetIndex, 1); 
-      this.setState({ [list]: newStateList})
+      newStateList.splice(targetIndex, 1);
+      this.setState({ [list]: newStateList })
+    } else {
+      const formattedName = name.replace(/\s/g, '_')
+      this.apiCalls.fetchBreweryByName(formattedName)
+        .then(response => {
+          const brewery = response[0]
+          if (!this.state[list].includes(brewery)) {
+            this.setState({ [list]: [...this.state[list], brewery] });
+          }
+        })
+        .catch(error => this.setState({ error }))
     }
   }
 

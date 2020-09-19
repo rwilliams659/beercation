@@ -15,7 +15,7 @@ describe('BreweryCard', () => {
           id={1}
           city='Denver'
           state='Colorado'
-          addBreweryToUserList={jest.fn()}
+          toggleBreweryToUserList={jest.fn()}
           inBreweriesToVisit={null}
           inBreweriesVisited={null}
         />
@@ -65,7 +65,7 @@ describe('BreweryCard', () => {
           id={1}
           city='Denver'
           state='Colorado'
-          addBreweryToUserList={jest.fn()}
+          toggleBreweryToUserList={jest.fn()}
           inBreweriesToVisit={breweryToVisit}
           inBreweriesVisited={null}
         />
@@ -103,7 +103,7 @@ describe('BreweryCard', () => {
           id={1}
           city='Denver'
           state='Colorado'
-          addBreweryToUserList={jest.fn()}
+          toggleBreweryToUserList={jest.fn()}
           inBreweriesToVisit={null}
           inBreweriesVisited={breweryVisited}
         />
@@ -114,9 +114,9 @@ describe('BreweryCard', () => {
 
     expect(VisitedTag).toBeInTheDocument();
   });
-  it('should call addBreweryToUserList when either button below the brewery card is clicked', () => {
+  it('should call toggleBreweryToUserList when either button below the brewery card is clicked', () => {
 
-    const mockAddBreweryToUserList = jest.fn();
+    const mocktoggleBreweryToUserList = jest.fn();
 
     render(
       <BrowserRouter>
@@ -126,7 +126,7 @@ describe('BreweryCard', () => {
           id={1}
           city='Denver'
           state='Colorado'
-          addBreweryToUserList={mockAddBreweryToUserList}
+          toggleBreweryToUserList={mocktoggleBreweryToUserList}
           inBreweriesToVisit={null}
           inBreweriesVisited={null}
         />
@@ -139,8 +139,8 @@ describe('BreweryCard', () => {
     fireEvent.click(toVisitBtn);
     fireEvent.click(visitedBtn);
 
-    expect(mockAddBreweryToUserList).toHaveBeenCalledTimes(2);
-    expect(mockAddBreweryToUserList).toHaveBeenCalledWith(1, 'breweriesToVisit')
-    expect(mockAddBreweryToUserList).toHaveBeenCalledWith(1, 'breweriesVisited')
+    expect(mocktoggleBreweryToUserList).toHaveBeenCalledTimes(2);
+    expect(mocktoggleBreweryToUserList).toHaveBeenCalledWith(1, 'breweriesToVisit')
+    expect(mocktoggleBreweryToUserList).toHaveBeenCalledWith(1, 'breweriesVisited')
   })
 })

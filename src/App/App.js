@@ -5,6 +5,7 @@ import SearchForm from '../SearchForm/SearchForm'
 import ApiCalls from '../helpers/apiCalls'
 import { Route } from 'react-router-dom'
 import Breweries from '../Breweries/Breweries';
+import UserSavedBreweries from '../UserSavedBreweries/UserSavedBreweries';
 
 class App extends Component {
   constructor() {
@@ -48,8 +49,16 @@ class App extends Component {
     this.setState({ filteredSearchResults})
   }
 
-  addBreweryToUserList = (id, list) => {
-    this.setState({ [list]: [...this.state[list], id]})
+  toggleBreweryToUserList = (id, list) => {
+    const brewery = this.state.searchResults.find(brewery => brewery.id === id);
+    if (!this.state[list].includes(brewery)) {
+      this.setState({ [list]: [...this.state[list], brewery] });
+    } else {
+      const newStateList = this.state[list]
+      const targetIndex = this.state[list].indexOf(brewery);
+      newStateList.splice(targetIndex, 1); 
+      this.setState({ [list]: newStateList})
+    }
   }
 
   clearSearchResults = (listToClear) => {
@@ -60,7 +69,7 @@ class App extends Component {
     return (
       <section className="App">
         <Header />
-          <Route exact to='/' render={() => 
+          <Route exact path='/' render={() => 
             <main>
               <SearchForm 
                 getSearchResults={this.getSearchResults}
@@ -68,7 +77,7 @@ class App extends Component {
               />
               <Breweries
                 searchResults={this.state.searchResults}
-                addBreweryToUserList={this.addBreweryToUserList}
+                toggleBreweryToUserList={this.toggleBreweryToUserList}
                 breweriesToVisit={this.state.breweriesToVisit}
                 breweriesVisited={this.state.breweriesVisited}
                 filterSearchResults={this.filterSearchResults}
@@ -76,6 +85,24 @@ class App extends Component {
               />
             </main>
           }/>
+          <Route exact path='/to-visit' render={() => 
+            <main>
+              <UserSavedBreweries 
+                userBreweries={this.state.breweriesToVisit}
+                view='To Visit'
+                toggleBreweryToUserList={this.toggleBreweryToUserList}
+              />
+            </main>
+        }/>
+        <Route exact path='/visited' render={() =>
+          <main>
+            <UserSavedBreweries
+              userBreweries={this.state.breweriesVisited}
+              view='Visited'
+              toggleBreweryToUserList={this.toggleBreweryToUserList}
+            />
+          </main>
+        } />
         </section>
     );
   }

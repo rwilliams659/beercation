@@ -3,17 +3,22 @@ import './BreweryDetails.css'
 import propTypes from 'prop-types'
 import brewery1 from '../images/brewery1.jpg'
 import { Link } from 'react-router-dom'
+import ApiCalls from '../helpers/apiCalls'
 
 class BreweryDetails extends Component {
   constructor(props) {
     super(props)
+    this.apiCalls = new ApiCalls();
     this.state = {
-      brewery: {}
+      brewery: {},
+      error: ''
     }
   }
 
   componentDidMount = () => {
-
+    this.apiCalls.fetchBreweryByName(this.props.name)
+      .then(brewery => this.setState({ brewery: brewery[0] }))
+      .catch(error => this.setState({ error }))
   }
 
   render() {
@@ -23,10 +28,10 @@ class BreweryDetails extends Component {
 
     return (
     <>
-    { !this.state.brewery && 
+    { Object.keys(this.state.brewery).length === 0 && 
       <h2>One moment please...</h2>
     }
-    { this.state.brewery && 
+    { Object.keys(this.state.brewery).length > 0 && 
       <section className='BreweryDetails'>
         <section className='img-column'>
           <button><Link to='/'>Back to Results</Link></button>

@@ -66,7 +66,7 @@ class App extends Component {
             this.setState({ [list]: [...this.state[list], brewery] });
           }
         })
-        .catch(error => this.setState({ error }))
+        .catch(error => alert(`Sorry, an error occurred with adding this brewery to your ${list} list.` ))
     }
   }
 

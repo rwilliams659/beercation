@@ -25,8 +25,14 @@ const BreweryCard = ({ name, type, id, city, state, toggleBreweryToUserList, inB
       </article>
       </Link>
       <section className='add-btns'>
+        {inBreweriesToVisit ? 
+        <button className='to-visit-btn' onClick={() => toggleBreweryToUserList(id, 'breweriesToVisit')}>Unmark as To Visit</button> : 
         <button className='to-visit-btn' onClick={() => toggleBreweryToUserList(id, 'breweriesToVisit')}>Mark as To Visit</button>
-          <button className='visited-btn' onClick={() => toggleBreweryToUserList(id, 'breweriesVisited')}>Mark as Visited</button>
+        }
+        {inBreweriesVisited ?   
+        <button className='visited-btn' onClick={() => toggleBreweryToUserList(id, 'breweriesVisited')}>Unmark as Visited</button> :
+        <button className='visited-btn' onClick={() => toggleBreweryToUserList(id, 'breweriesVisited')}>Mark as Visited</button> 
+        }
       </section>
     </section>
   )
@@ -38,7 +44,7 @@ BreweryCard.propTypes = {
   id: propTypes.number.isRequired,
   city: propTypes.string.isRequired,
   state: propTypes.string.isRequired,
-  toggleBreweryToUserList: propTypes.func.isRequired,
+  togglBreweryToUserList: propTypes.func.isRequired,
   inBreweriesToVisit: propTypes.object,
   inBreweriesVisited: propTypes.object
 }

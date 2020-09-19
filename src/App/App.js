@@ -82,6 +82,7 @@ class App extends Component {
             <main>
               <UserSavedBreweries 
                 userBreweries={this.state.breweriesToVisit}
+                view='To Visit'
               />
             </main>
         }/>
@@ -89,6 +90,7 @@ class App extends Component {
           <main>
             <UserSavedBreweries
               userBreweries={this.state.breweriesVisited}
+              view='Visited'
             />
           </main>
         } />

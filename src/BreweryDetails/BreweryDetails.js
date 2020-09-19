@@ -6,6 +6,10 @@ import { Link } from 'react-router-dom'
 
 const BreweryDetails = ({brewery, toggleBreweryToUserList, breweriesVisited, breweriesToVisit}) => {
 
+  const inBreweriesToVisit = breweriesToVisit.find(savedBrewery => savedBrewery.id === brewery.id);
+
+  const inBreweriesVisited = breweriesVisited.find(savedBrewery => savedBrewery.id === brewery.id);
+
   return (
     <section className='BreweryDetails'>
       <section className='img-column'>
@@ -18,8 +22,18 @@ const BreweryDetails = ({brewery, toggleBreweryToUserList, breweriesVisited, bre
         <p>Telephone: {brewery.phone}</p>
         <a href={brewery.website_url}>Learn more</a>
         <section className='user-list-btns'>
-          <button>Add to "To Visit"</button>
-          <button>Add to "Visited"</button>
+          { !inBreweriesToVisit && 
+            <button onClick={() => toggleBreweryToUserList(brewery.id, 'breweriesToVisit')}>Mark as to "To Visit"</button>
+          }
+          { inBreweriesToVisit &&
+            <button onClick={() => toggleBreweryToUserList(brewery.id, 'breweriesToVisit')}>Unmark as to "To Visit"</button>
+          }
+          { !inBreweriesVisited &&
+            <button onClick={() => toggleBreweryToUserList(brewery.id, 'breweriesVisited')}>Mark as to "Visited"</button>
+          }
+          { inBreweriesVisited &&
+            <button onClick={() => toggleBreweryToUserList(brewery.id, 'breweriesVisited')}>Unmark as to "Visited"</button>
+          }
         </section>
       </section>
     </section>

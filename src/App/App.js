@@ -5,6 +5,7 @@ import SearchForm from '../SearchForm/SearchForm'
 import ApiCalls from '../helpers/apiCalls'
 import { Route } from 'react-router-dom'
 import Breweries from '../Breweries/Breweries';
+import UserSavedBreweries from '../UserSavedBreweries/UserSavedBreweries';
 
 class App extends Component {
   constructor() {
@@ -60,7 +61,7 @@ class App extends Component {
     return (
       <section className="App">
         <Header />
-          <Route exact to='/' render={() => 
+          <Route exact path='/' render={() => 
             <main>
               <SearchForm 
                 getSearchResults={this.getSearchResults}
@@ -76,6 +77,20 @@ class App extends Component {
               />
             </main>
           }/>
+          <Route exact path='/to-visit' render={() => 
+            <main>
+              <UserSavedBreweries 
+                userSavedBreweries={this.state.breweriesToVisit}
+              />
+            </main>
+        }/>
+        <Route exact path='/visited' render={() =>
+          <main>
+            <UserSavedBreweries
+              userSavedBreweries={this.state.breweriesVisited}
+            />
+          </main>
+        } />
         </section>
     );
   }

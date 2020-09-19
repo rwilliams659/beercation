@@ -50,7 +50,8 @@ class App extends Component {
   }
 
   addBreweryToUserList = (id, list) => {
-    this.setState({ [list]: [...this.state[list], id]})
+    const brewery = this.state.searchResults.find(brewery => brewery.id === id)
+    this.setState({ [list]: [...this.state[list], brewery]})
   }
 
   clearSearchResults = (listToClear) => {
@@ -80,14 +81,14 @@ class App extends Component {
           <Route exact path='/to-visit' render={() => 
             <main>
               <UserSavedBreweries 
-                userSavedBreweries={this.state.breweriesToVisit}
+                userBreweries={this.state.breweriesToVisit}
               />
             </main>
         }/>
         <Route exact path='/visited' render={() =>
           <main>
             <UserSavedBreweries
-              userSavedBreweries={this.state.breweriesVisited}
+              userBreweries={this.state.breweriesVisited}
             />
           </main>
         } />

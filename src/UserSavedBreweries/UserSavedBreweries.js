@@ -11,7 +11,6 @@ const UserSavedBreweries = ({userBreweries, view}) => {
       <UserBreweryCard
         name={brewery.name}
         type={brewery.brewery_type}
-        id={brewery.id}
         city={brewery.city}
         state={brewery.state}
       />
@@ -20,7 +19,7 @@ const UserSavedBreweries = ({userBreweries, view}) => {
 
   return (
     <section className='UserSavedBreweries Breweries'>
-      <h2 className='results-heading'>Breweries {view}</h2>
+      <h2 className='visit-heading'>Breweries {view}</h2>
       <section className='brewery-cards'>
         {cards}
       </section>

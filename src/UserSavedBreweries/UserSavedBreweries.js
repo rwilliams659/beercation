@@ -20,9 +20,14 @@ const UserSavedBreweries = ({ userBreweries, view, toggleBreweryToUserList }) =>
   return (
     <section className='UserSavedBreweries Breweries'>
       <h2 className='user-saved-heading'>Breweries {view}</h2>
-      <section className='brewery-cards'>
-        {cards}
-      </section>
+      {cards.length > 0 && 
+        <section className='brewery-cards'>
+          {cards}
+        </section>
+      }
+      {cards.length === 0 &&
+        <p className='no-cards-yet'>You don't get have any breweries set as '{view}' yet! Return to the homepage to search for new breweries and add them to your lists.</p>
+      }
     </section>
   )
 }

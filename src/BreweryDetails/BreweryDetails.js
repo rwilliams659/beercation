@@ -15,24 +15,24 @@ const BreweryDetails = ({brewery, toggleBreweryToUserList, breweriesVisited, bre
       <section className='img-column'>
         <button><Link to='/'>Back to Results</Link></button>
         <img src={brewery1} alt='brewery'/>
+        <div>
+          {inBreweriesToVisit ? <p className='tag1'>To Visit</p> : ''}
+          {inBreweriesVisited ? <p className='tag2'>Visited</p> : ''}
+        </div>
       </section>
       <section className='brewery-info'>
         <h2>{brewery.name}</h2>
         <p>Address:<br/>{brewery.street}<br/>{brewery.city}, {brewery.state} {brewery.postal_code}</p>
         <p>Telephone: {brewery.phone}</p>
-        <a href={brewery.website_url}>Learn more</a>
-        <section className='user-list-btns'>
-          { !inBreweriesToVisit && 
-            <button onClick={() => toggleBreweryToUserList(brewery.id, 'breweriesToVisit')}>Mark as to "To Visit"</button>
+        <a href={brewery.website_url} target='_blank'>Learn more</a>
+        <section className='add-btns'>
+          {inBreweriesToVisit ?
+            <button className='to-visit-btn' onClick={() => toggleBreweryToUserList(brewery.id, 'breweriesToVisit')}>Unmark as To Visit</button> :
+            <button className='to-visit-btn' onClick={() => toggleBreweryToUserList(brewery.id, 'breweriesToVisit')}>Mark as To Visit</button>
           }
-          { inBreweriesToVisit &&
-            <button onClick={() => toggleBreweryToUserList(brewery.id, 'breweriesToVisit')}>Unmark as to "To Visit"</button>
-          }
-          { !inBreweriesVisited &&
-            <button onClick={() => toggleBreweryToUserList(brewery.id, 'breweriesVisited')}>Mark as to "Visited"</button>
-          }
-          { inBreweriesVisited &&
-            <button onClick={() => toggleBreweryToUserList(brewery.id, 'breweriesVisited')}>Unmark as to "Visited"</button>
+          {inBreweriesVisited ?
+            <button className='visited-btn' onClick={() => toggleBreweryToUserList(brewery.id, 'breweriesVisited')}>Unmark as Visited</button> :
+            <button className='visited-btn' onClick={() => toggleBreweryToUserList(brewery.id, 'breweriesVisited')}>Mark as Visited</button>
           }
         </section>
       </section>

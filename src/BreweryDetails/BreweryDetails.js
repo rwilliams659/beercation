@@ -22,9 +22,8 @@ class BreweryDetails extends Component {
   }
 
   render() {
-    const inBreweriesToVisit = this.props.breweriesToVisit.find(savedBrewery => savedBrewery.id === this.state.brewery.id);
-
-    const inBreweriesVisited = this.props.breweriesVisited.find(savedBrewery => savedBrewery.id === this.state.brewery.id);
+     const inBreweriesToVisit = this.props.breweriesToVisit.find(savedBrewery => savedBrewery.id === this.state.brewery.id)
+     const inBreweriesVisited = this.props.breweriesVisited.find(savedBrewery => savedBrewery.id === this.state.brewery.id);
 
     return (
     <>
@@ -48,12 +47,12 @@ class BreweryDetails extends Component {
           <a href={this.state.brewery.website_url} target='_blank' rel='noopener noreferrer'>Learn more</a>
           <section className='add-btns'>
             {inBreweriesToVisit ?
-              <button className='to-visit-btn' onClick={() => this.props.toggleBreweryToUserList(this.statebrewery.id, 'breweriesToVisit')}>Unmark as To Visit</button> :
-              <button className='to-visit-btn' onClick={() => this.props.toggleBreweryToUserList(this.state.brewery.id, 'breweriesToVisit')}>Mark as To Visit</button>
+              <button className='to-visit-btn' onClick={() => this.props.toggleBreweryToUserList(this.state.brewery.name, 'breweriesToVisit')}>Unmark as To Visit</button> :
+              <button className='to-visit-btn' onClick={() => this.props.toggleBreweryToUserList(this.state.brewery.name, 'breweriesToVisit')}>Mark as To Visit</button>
             }
             {inBreweriesVisited ?
-              <button className='visited-btn' onClick={() => this.props.toggleBreweryToUserList(this.state.brewery.id, 'breweriesVisited')}>Unmark as Visited</button> :
-              <button className='visited-btn' onClick={() => this.props.toggleBreweryToUserList(this.state.brewery.id, 'breweriesVisited')}>Mark as Visited</button>
+              <button className='visited-btn' onClick={() => this.props.toggleBreweryToUserList(this.state.brewery.name, 'breweriesVisited')}>Unmark as Visited</button> :
+              <button className='visited-btn' onClick={() => this.props.toggleBreweryToUserList(this.state.brewery.name, 'breweriesVisited')}>Mark as Visited</button>
             }
           </section>
         </section>

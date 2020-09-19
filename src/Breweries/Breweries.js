@@ -1,6 +1,5 @@
 import React from 'react'
 import './Breweries.css'
-import { Link } from 'react-router-dom'
 import propTypes from 'prop-types'
 import BreweryCard from '../BreweryCard/BreweryCard'
 import FilterForm from '../FilterForm/FilterForm'
@@ -20,6 +19,7 @@ const Breweries = ({ searchResults, toggleBreweryToUserList, breweriesToVisit, b
 
     return (
         <BreweryCard
+          key={brewery.id}
           name={brewery.name}
           type={brewery.brewery_type}
           id={brewery.id}

@@ -54,10 +54,12 @@ describe('Breweries', () => {
     )
 
       const resultsHeading = screen.getByRole('heading', {name: 'Search Results'});
+      const filterHeading = screen.getByText('Filter by brewery type:');
       const breweryCard1 = screen.getByRole('heading', {name: 'Denver Brews'});
       const breweryCard2 = screen.getByRole('heading', {name: 'Portland Brews'});
 
       expect(resultsHeading).toBeInTheDocument(); 
+      expect(filterHeading).toBeInTheDocument();
       expect(breweryCard1).toBeInTheDocument(); 
       expect(breweryCard2).toBeInTheDocument(); 
   });

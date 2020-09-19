@@ -7,6 +7,7 @@ const UserSavedBreweries = ({ userBreweries, view, toggleBreweryToUserList }) =>
   const sortedBreweries = userBreweries.sort((a, b) => (a.name < b.name) ? -1 : (a.name > b.name) ? 1 : 0);
   const cards = sortedBreweries.map(brewery => 
     <UserBreweryCard
+      key={brewery.id}
       name={brewery.name}
       type={brewery.brewery_type}
       id={brewery.id}
@@ -26,7 +27,7 @@ const UserSavedBreweries = ({ userBreweries, view, toggleBreweryToUserList }) =>
         </section>
       }
       {cards.length === 0 &&
-        <p className='no-cards-yet'>You don't get have any breweries set as '{view}' yet! Return to the homepage to search for new breweries and add them to your lists.</p>
+        <p className='no-cards-yet'>You don't get have any breweries set as "{view}" yet! Return to the homepage to search for new breweries and add them to your lists.</p>
       }
     </section>
   )

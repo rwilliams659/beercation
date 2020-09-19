@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom'
 const BreweryCard = ({ name, type, id, city, state, toggleBreweryToUserList, inBreweriesToVisit, inBreweriesVisited }) => {
   return (
     <section className='BreweryCard'>
-      <Link to={`/breweries/${id}`} key={id}>
+      <Link to={`/breweries/${id}`}>
         <article className='card-body'>
         <section className='icons-tags'>
           <img src={bottleCapIcon} alt='bottle cap'/>
@@ -44,7 +44,7 @@ BreweryCard.propTypes = {
   id: propTypes.number.isRequired,
   city: propTypes.string.isRequired,
   state: propTypes.string.isRequired,
-  togglBreweryToUserList: propTypes.func.isRequired,
+  toggleBreweryToUserList: propTypes.func.isRequired,
   inBreweriesToVisit: propTypes.object,
   inBreweriesVisited: propTypes.object
 }

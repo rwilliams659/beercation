@@ -142,5 +142,80 @@ describe('BreweryCard', () => {
     expect(mocktoggleBreweryToUserList).toHaveBeenCalledTimes(2);
     expect(mocktoggleBreweryToUserList).toHaveBeenCalledWith(1, 'breweriesToVisit')
     expect(mocktoggleBreweryToUserList).toHaveBeenCalledWith(1, 'breweriesVisited')
+  });
+  it('should have a button that says "Unmark as To Visit" if already marked as "To Visit"', () => {
+
+    const brewery = {
+      id: 1,
+      name: 'Denver Brews',
+      brewery_type: 'micro',
+      street: '1 Lavender Ave',
+      city: 'Denver',
+      state: 'Colorado',
+      postal_code: '12345',
+      country: 'United States',
+      longitute: '-100',
+      latitude: '30',
+      phone: '1112223333',
+      website_url: 'http://brews.com',
+      updated_at: '2020-01-01T21:21:20.283Z'
+    }
+
+    render(
+      <BrowserRouter>
+        <BreweryCard
+          name='Denver Brews'
+          type='micro'
+          id={1}
+          city='Denver'
+          state='Colorado'
+          toggleBreweryToUserList={jest.fn()}
+          inBreweriesToVisit={brewery}
+          inBreweriesVisited={null}
+        />
+      </BrowserRouter>
+    )
+
+    const toVisitBtn = screen.getByRole('button', { name: 'Unmark as To Visit' });
+    
+    expect(toVisitBtn).toBeInTheDocument(); 
+  });
+
+  it('should have a button that says "Unmark as Visited" if already marked as "Visited"', () => {
+
+    const brewery = {
+      id: 1,
+      name: 'Denver Brews',
+      brewery_type: 'micro',
+      street: '1 Lavender Ave',
+      city: 'Denver',
+      state: 'Colorado',
+      postal_code: '12345',
+      country: 'United States',
+      longitute: '-100',
+      latitude: '30',
+      phone: '1112223333',
+      website_url: 'http://brews.com',
+      updated_at: '2020-01-01T21:21:20.283Z'
+    }
+
+    render(
+      <BrowserRouter>
+        <BreweryCard
+          name='Denver Brews'
+          type='micro'
+          id={1}
+          city='Denver'
+          state='Colorado'
+          toggleBreweryToUserList={jest.fn()}
+          inBreweriesToVisit={null}
+          inBreweriesVisited={brewery}
+        />
+      </BrowserRouter>
+    )
+
+    const VisitedBtn = screen.getByRole('button', { name: 'Unmark as Visited' });
+
+    expect(VisitedBtn).toBeInTheDocument();
   })
 })

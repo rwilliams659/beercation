@@ -26,7 +26,7 @@ const UserSavedBreweries = ({ userBreweries, view, toggleBreweryToUserList }) =>
         </section>
       }
       {cards.length === 0 &&
-        <p className='no-cards-yet'>You don't get have any breweries set as '{view}' yet! Return to the homepage to search for new breweries and add them to your lists.</p>
+        <p className='no-cards-yet'>You don't get have any breweries set as "{view}" yet! Return to the homepage to search for new breweries and add them to your lists.</p>
       }
     </section>
   )

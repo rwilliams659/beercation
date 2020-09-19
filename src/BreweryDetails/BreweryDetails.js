@@ -4,7 +4,7 @@ import propTypes from 'prop-types'
 import brewery1 from '../images/brewery1.jpg'
 import { Link } from 'react-router-dom'
 
-const BreweryDetails = ({matchingBrewery}) => {
+const BreweryDetails = ({brewery, toggleBreweryToUserList, breweriesVisited, breweriesToVisit}) => {
 
   return (
     <section className='BreweryDetails'>
@@ -13,17 +13,24 @@ const BreweryDetails = ({matchingBrewery}) => {
         <img src={brewery1} alt='brewery'/>
       </section>
       <section className='brewery-info'>
-        <h2>{matchingBrewery.name}</h2>
-        <p>Address:<br/>{matchingBrewery.street}<br/>{matchingBrewery.city}, {matchingBrewery.state} {matchingBrewery.postal_code}</p>
-        <p>Telephone: {matchingBrewery.phone}</p>
-        <a href={matchingBrewery.website_url}>Learn more</a>
+        <h2>{brewery.name}</h2>
+        <p>Address:<br/>{brewery.street}<br/>{brewery.city}, {brewery.state} {brewery.postal_code}</p>
+        <p>Telephone: {brewery.phone}</p>
+        <a href={brewery.website_url}>Learn more</a>
+        <section className='user-list-btns'>
+          <button>Add to "To Visit"</button>
+          <button>Add to "Visited"</button>
+        </section>
       </section>
     </section>
   )
 }
 
 BreweryDetails.propTypes = {
-  matchingBrewery: propTypes.object
+  brewery: propTypes.object.isRequired,
+  toggleBreweryToUserList: propTypes.func.isRequired,
+  breweriesVisited: propTypes.array.isRequired,
+  breweriesToVisit: propTypes.array.isRequired
 }
 
 export default BreweryDetails 

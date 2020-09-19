@@ -109,6 +109,9 @@ class App extends Component {
           return (
             <BreweryDetails 
               brewery={matchingBrewery}
+              toggleBreweryToUserList={this.toggleBreweryToUserList}
+              breweriesVisited={this.state.breweriesVisited}
+              breweriesToVisit={this.state.breweriesToVisit}
             />
           )
         }}/>

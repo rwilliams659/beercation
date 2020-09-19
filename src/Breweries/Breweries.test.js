@@ -44,7 +44,7 @@ describe('Breweries', () => {
       <BrowserRouter>
         <Breweries 
           searchResults={results}
-          addBreweryToUserList={jest.fn()}
+          toggleBreweryToUserList={jest.fn()}
           breweriesToVisit={[]}
           breweriesVisited={[]}
           filterSearchResults={jest.fn()}
@@ -119,7 +119,7 @@ describe('Breweries', () => {
       <BrowserRouter>
         <Breweries
           searchResults={results}
-          addBreweryToUserList={jest.fn()}
+          toggleBreweryToUserList={jest.fn()}
           breweriesToVisit={[]}
           breweriesVisited={[]}
           filterSearchResults={jest.fn()}

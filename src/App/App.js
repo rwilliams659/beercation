@@ -49,9 +49,16 @@ class App extends Component {
     this.setState({ filteredSearchResults})
   }
 
-  addBreweryToUserList = (id, list) => {
-    const brewery = this.state.searchResults.find(brewery => brewery.id === id)
-    this.setState({ [list]: [...this.state[list], brewery]})
+  toggleBreweryToUserList = (id, list) => {
+    const brewery = this.state.searchResults.find(brewery => brewery.id === id);
+    if (!this.state[list].includes(brewery)) {
+      this.setState({ [list]: [...this.state[list], brewery] });
+    } else {
+      const newStateList = this.state[list]
+      const targetIndex = this.state[list].indexOf(brewery);
+      newStateList.splice(targetIndex, 1); 
+      this.setState({ [list]: newStateList})
+    }
   }
 
   clearSearchResults = (listToClear) => {
@@ -70,7 +77,7 @@ class App extends Component {
               />
               <Breweries
                 searchResults={this.state.searchResults}
-                addBreweryToUserList={this.addBreweryToUserList}
+                toggleBreweryToUserList={this.toggleBreweryToUserList}
                 breweriesToVisit={this.state.breweriesToVisit}
                 breweriesVisited={this.state.breweriesVisited}
                 filterSearchResults={this.filterSearchResults}

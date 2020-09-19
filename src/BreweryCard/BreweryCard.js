@@ -5,7 +5,7 @@ import bottleCapIcon from '../images/bottle-cap.png'
 import { Link } from 'react-router-dom'
 
 
-const BreweryCard = ({ name, type, id, city, state, addBreweryToUserList, inBreweriesToVisit, inBreweriesVisited }) => {
+const BreweryCard = ({ name, type, id, city, state, toggleBreweryToUserList, inBreweriesToVisit, inBreweriesVisited }) => {
   return (
     <section className='BreweryCard'>
       <Link to={`/breweries/${id}`} key={id}>
@@ -25,8 +25,8 @@ const BreweryCard = ({ name, type, id, city, state, addBreweryToUserList, inBrew
       </article>
       </Link>
       <section className='add-btns'>
-        <button className='to-visit-btn' onClick={() => addBreweryToUserList(id, 'breweriesToVisit')}>Mark as To Visit</button>
-          <button className='visited-btn' onClick={() => addBreweryToUserList(id, 'breweriesVisited')}>Mark as Visited</button>
+        <button className='to-visit-btn' onClick={() => toggleBreweryToUserList(id, 'breweriesToVisit')}>Mark as To Visit</button>
+          <button className='visited-btn' onClick={() => toggleBreweryToUserList(id, 'breweriesVisited')}>Mark as Visited</button>
       </section>
     </section>
   )
@@ -38,7 +38,7 @@ BreweryCard.propTypes = {
   id: propTypes.number.isRequired,
   city: propTypes.string.isRequired,
   state: propTypes.string.isRequired,
-  addBreweryToUserList: propTypes.func.isRequired,
+  toggleBreweryToUserList: propTypes.func.isRequired,
   inBreweriesToVisit: propTypes.object,
   inBreweriesVisited: propTypes.object
 }

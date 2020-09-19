@@ -5,7 +5,7 @@ import propTypes from 'prop-types'
 import BreweryCard from '../BreweryCard/BreweryCard'
 import FilterForm from '../FilterForm/FilterForm'
 
-const Breweries = ({ searchResults, addBreweryToUserList, breweriesToVisit, breweriesVisited, filterSearchResults, filteredSearchResults }) => {
+const Breweries = ({ searchResults, toggleBreweryToUserList, breweriesToVisit, breweriesVisited, filterSearchResults, filteredSearchResults }) => {
   let results; 
   if (filteredSearchResults.length > 0) {
     results = filteredSearchResults;
@@ -25,7 +25,7 @@ const Breweries = ({ searchResults, addBreweryToUserList, breweriesToVisit, brew
           id={brewery.id}
           city={brewery.city}
           state={brewery.state}
-          addBreweryToUserList={addBreweryToUserList}
+          toggleBreweryToUserList={toggleBreweryToUserList}
           inBreweriesToVisit={inBreweriesToVisit}
           inBreweriesVisited={inBreweriesVisited}
         />
@@ -55,7 +55,7 @@ const Breweries = ({ searchResults, addBreweryToUserList, breweriesToVisit, brew
 
 Breweries.propTypes = {
   searchResults: propTypes.array.isRequired,
-  addBreweryToUserList: propTypes.func.isRequired,
+  toggleBreweryToUserList: propTypes.func.isRequired,
   breweriesToVisit: propTypes.array.isRequired,
   breweriesVisited: propTypes.array.isRequired,
   filterSearchResults: propTypes.func.isRequired,

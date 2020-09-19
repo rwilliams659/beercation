@@ -104,17 +104,14 @@ class App extends Component {
             />
           </main>
         }/>
-        <Route path='/breweries/:name/' render={({ match }) => {
-          const matchingBrewery = this.state.searchResults.find(brewery => brewery.name === parseInt(match.params.name));
-          return (
-            <BreweryDetails 
-              brewery={matchingBrewery}
-              toggleBreweryToUserList={this.toggleBreweryToUserList}
-              breweriesVisited={this.state.breweriesVisited}
-              breweriesToVisit={this.state.breweriesToVisit}
-            />
-          )
-        }}/>
+        <Route path='/breweries/:name/' render={({ match }) => 
+          <BreweryDetails 
+            name={match.params.name}
+            toggleBreweryToUserList={this.toggleBreweryToUserList}
+            breweriesVisited={this.state.breweriesVisited}
+            breweriesToVisit={this.state.breweriesToVisit}
+          />
+        }/>
       </section>
     );
   }

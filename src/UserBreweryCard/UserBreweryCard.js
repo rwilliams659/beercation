@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom'
 const UserBreweryCard = ({ name, type, id, city, state, view, toggleBreweryToUserList }) => {
   return (
     <section className='BreweryCard'>
-      <Link to={`/breweries/${id}`} key={id}>
+      <Link to={`/breweries/${id}`}>
       <article className='card-body'>
         <section className='icons-tags'>
           <img src={bottleCapIcon} alt='bottle cap' />

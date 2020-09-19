@@ -7,6 +7,7 @@ const UserSavedBreweries = ({ userBreweries, view, toggleBreweryToUserList }) =>
   const sortedBreweries = userBreweries.sort((a, b) => (a.name < b.name) ? -1 : (a.name > b.name) ? 1 : 0);
   const cards = sortedBreweries.map(brewery => 
     <UserBreweryCard
+      key={brewery.id}
       name={brewery.name}
       type={brewery.brewery_type}
       id={brewery.id}

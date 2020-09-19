@@ -1,6 +1,6 @@
 import React from 'react'
 import UserBreweryCard from '../UserBreweryCard/UserBreweryCard'
-import { render, screen } from '@testing-library/react'
+import { render, screen, fireEvent } from '@testing-library/react'
 import '@testing-library/jest-dom'
 import { BrowserRouter } from 'react-router-dom'
 
@@ -61,5 +61,57 @@ describe('UserBreweryCard', () => {
     expect(type).toBeInTheDocument();
     expect(location).toBeInTheDocument();
     expect(button).toBeInTheDocument();
-  })
+  });
+
+  it('should call toggleBreweryToUserList when Unmark button is clicked on the To Visit page', () => {
+
+    const mockToggleBreweryToUserList = jest.fn()
+
+    render(
+      <BrowserRouter>
+        <UserBreweryCard
+          name='Denver Brews'
+          type='micro'
+          id={1}
+          city='Denver'
+          state='Colorado'
+          view='To Visit'
+          toggleBreweryToUserList={mockToggleBreweryToUserList}
+        />
+      </BrowserRouter>
+    )
+
+    const button = screen.getByRole('button', { name: 'Unmark as To Visit' });
+
+    fireEvent.click(button);
+
+    expect(mockToggleBreweryToUserList).toHaveBeenCalledTimes(1);
+    expect(mockToggleBreweryToUserList).toHaveBeenCalledWith(1, 'breweriesToVisit');
+  });
+
+  it('should call toggleBreweryToUserList when Unmark button is clicked on the Visited page', () => {
+
+    const mockToggleBreweryToUserList = jest.fn()
+
+    render(
+      <BrowserRouter>
+        <UserBreweryCard
+          name='Denver Brews'
+          type='micro'
+          id={1}
+          city='Denver'
+          state='Colorado'
+          view='Visited'
+          toggleBreweryToUserList={mockToggleBreweryToUserList}
+        />
+      </BrowserRouter>
+    )
+
+    const button = screen.getByRole('button', { name: 'Unmark as Visited' });
+
+    fireEvent.click(button);
+
+    expect(mockToggleBreweryToUserList).toHaveBeenCalledTimes(1);
+    expect(mockToggleBreweryToUserList).toHaveBeenCalledWith(1, 'breweriesVisited');
+  });
 })

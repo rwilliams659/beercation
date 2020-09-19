@@ -90,6 +90,7 @@ class App extends Component {
               <UserSavedBreweries 
                 userBreweries={this.state.breweriesToVisit}
                 view='To Visit'
+                toggleBreweryToUserList={this.toggleBreweryToUserList}
               />
             </main>
         }/>
@@ -98,6 +99,7 @@ class App extends Component {
             <UserSavedBreweries
               userBreweries={this.state.breweriesVisited}
               view='Visited'
+              toggleBreweryToUserList={this.toggleBreweryToUserList}
             />
           </main>
         } />

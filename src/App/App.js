@@ -6,6 +6,7 @@ import ApiCalls from '../helpers/apiCalls'
 import { Route } from 'react-router-dom'
 import Breweries from '../Breweries/Breweries';
 import UserSavedBreweries from '../UserSavedBreweries/UserSavedBreweries';
+import BreweryDetails from '../BreweryDetails/BreweryDetails';
 
 class App extends Component {
   constructor() {
@@ -102,8 +103,16 @@ class App extends Component {
               toggleBreweryToUserList={this.toggleBreweryToUserList}
             />
           </main>
-        } />
-        </section>
+        }/>
+        <Route path='/breweries/:id' render={({ match }) => {
+          const matchingBrewery = this.state.searchResults.find(brewery => brewery.id === parseInt(match.params.id));
+          return (
+            <BreweryDetails 
+              brewery={matchingBrewery}
+            />
+          )
+        }}/>
+      </section>
     );
   }
   

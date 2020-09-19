@@ -104,8 +104,8 @@ class App extends Component {
             />
           </main>
         }/>
-        <Route path='/breweries/:id' render={({ match }) => {
-          const matchingBrewery = this.state.searchResults.find(brewery => brewery.id === parseInt(match.params.id));
+        <Route path='/breweries/:name/' render={({ match }) => {
+          const matchingBrewery = this.state.searchResults.find(brewery => brewery.name === parseInt(match.params.name));
           return (
             <BreweryDetails 
               brewery={matchingBrewery}

@@ -6,9 +6,10 @@ import { Link } from 'react-router-dom'
 
 
 const BreweryCard = ({ name, type, id, city, state, toggleBreweryToUserList, inBreweriesToVisit, inBreweriesVisited }) => {
+  const formattedName = name.replace(/\s/g, '_')
   return (
     <section className='BreweryCard'>
-      <Link to={`/breweries/${id}`}>
+      <Link to={`/breweries/${formattedName}`}>
         <article className='card-body'>
         <section className='icons-tags'>
           <img src={bottleCapIcon} alt='bottle cap'/>

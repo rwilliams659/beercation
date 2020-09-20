@@ -53,5 +53,66 @@ describe('BreweryDetails', () => {
     expect(phone).toBeInTheDocument();
     expect(markToVisitBtn).toBeInTheDocument();
     expect(markVisitedBtn).toBeInTheDocument();
+  });
+
+  it('should display a loading screen while details are being fetched', () => {
+
+    render(
+      <BrowserRouter>
+        <BreweryDetails
+          name='Denver_Brews'
+          toggleBreweryToUserList={jest.fn()}
+          breweriesVisited={[]}
+          breweriesToVisit={[]}
+        />
+      </BrowserRouter>
+    )
+
+    const loadingScreen = screen.getByText('One moment please...')
+
+    expect(loadingScreen).toBeInTheDocument();
+  });
+
+  it('should display an error message if fetch returns empty array', async () => {
+    fetchBreweryByName.mockResolvedValue([])
+
+    render(
+      <BrowserRouter>
+        <BreweryDetails
+          name='Denver_Brews'
+          toggleBreweryToUserList={jest.fn()}
+          breweriesVisited={[]}
+          breweriesToVisit={[]}
+        />
+      </BrowserRouter>
+    )
+
+    const errorMsg = await waitFor(() => screen.getByText('Sorry, we couldn\'t locate that brewery.'));
+
+    expect(errorMsg).toBeInTheDocument();
+  });
+
+  it('should display an error message if fetch is not successful', async () => {
+    fetchBreweryByName.mockRejectedValue('No brewery found')
+
+    render(
+      <BrowserRouter>
+        <BreweryDetails
+          name='Denver_Brews'
+          toggleBreweryToUserList={jest.fn()}
+          breweriesVisited={[]}
+          breweriesToVisit={[]}
+        />
+      </BrowserRouter>
+    )
+
+    const errorMsg = await waitFor(() => screen.getByText('No brewery found'));
+
+    expect(errorMsg).toBeInTheDocument();
   })
+
 })
+
+//test rendering when it's in To Visit (tag & button)
+
+//test rendering when it's in Visited (tag & button)

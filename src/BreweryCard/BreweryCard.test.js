@@ -27,8 +27,8 @@ describe('BreweryCard', () => {
     const icon = screen.getByAltText('bottle cap');
     const type = screen.getByText('Type: bar');
     const location = screen.getByText('Denver, Colorado')
-    const toVisitBtn = screen.getByRole('button', { name: 'Mark as To Visit'});
-    const visitedBtn = screen.getByRole('button', { name: 'Mark as Visited'});
+    const toVisitBtn = screen.getByRole('button', { name: 'Mark Denver Brews as To Visit'});
+    const visitedBtn = screen.getByRole('button', { name: 'Mark Denver Brews as Visited'});
 
     expect(cardTitle).toBeInTheDocument(); 
     expect(cardType).toBeInTheDocument(); 
@@ -72,7 +72,8 @@ describe('BreweryCard', () => {
       </BrowserRouter>
     )
 
-    const ToVisitTag = screen.getByText('To Visit', {exact: true});
+    // const ToVisitTag = screen.getByText('To Visit', {exact: true});
+    const ToVisitTag = screen.getByLabelText('Denver Brews marked as "to visit"')
 
     expect(ToVisitTag).toBeInTheDocument();
   });
@@ -110,7 +111,7 @@ describe('BreweryCard', () => {
       </BrowserRouter>
     )
 
-    const VisitedTag = screen.getByText('Visited', { exact: true });
+    const VisitedTag = screen.getByLabelText('Denver Brews marked as "visited"')
 
     expect(VisitedTag).toBeInTheDocument();
   });
@@ -133,8 +134,8 @@ describe('BreweryCard', () => {
       </BrowserRouter>
     )
 
-    const toVisitBtn = screen.getByRole('button', { name: 'Mark as To Visit' });
-    const visitedBtn = screen.getByRole('button', { name: 'Mark as Visited' });
+    const toVisitBtn = screen.getByRole('button', { name: 'Mark Denver Brews as To Visit' });
+    const visitedBtn = screen.getByRole('button', { name: 'Mark Denver Brews as Visited' });
     
     fireEvent.click(toVisitBtn);
     fireEvent.click(visitedBtn);
@@ -176,7 +177,7 @@ describe('BreweryCard', () => {
       </BrowserRouter>
     )
 
-    const toVisitBtn = screen.getByRole('button', { name: 'Unmark as To Visit' });
+    const toVisitBtn = screen.getByRole('button', { name: 'Unmark Denver Brews as To Visit' });
     
     expect(toVisitBtn).toBeInTheDocument(); 
   });
@@ -214,7 +215,7 @@ describe('BreweryCard', () => {
       </BrowserRouter>
     )
 
-    const VisitedBtn = screen.getByRole('button', { name: 'Unmark as Visited' });
+    const VisitedBtn = screen.getByRole('button', { name: 'Unmark Denver Brews as Visited' });
 
     expect(VisitedBtn).toBeInTheDocument();
   })

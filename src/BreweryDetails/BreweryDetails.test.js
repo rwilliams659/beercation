@@ -1,6 +1,6 @@
 import React from 'react'
 import BreweryDetails from './BreweryDetails'
-import { screen, render, waitFor } from '@testing-library/react'
+import { screen, render, waitFor, fireEvent } from '@testing-library/react'
 import '@testing-library/jest-dom'
 import { BrowserRouter} from 'react-router-dom'
 import { fetchBreweryByName} from '../helpers/apiCalls'
@@ -182,5 +182,88 @@ describe('BreweryDetails', () => {
 
     const visitedTag = await waitFor(() => screen.getByText('Visited', { exact: true }));
     const visitedBtn = await waitFor(() => screen.getByRole('button', { name: 'Unmark as Visited' }));
+
+    expect(visitedTag).toBeInTheDocument();
+    expect(visitedBtn).toBeInTheDocument();
+  });
+
+  it('when a user clicks "Mark as To Visit", toggleBreweryToUserList should be called', async () => {
+    fetchBreweryByName.mockResolvedValue([
+      {
+        id: 1,
+        name: 'Denver Brews',
+        brewery_type: 'micro',
+        street: '1 Lavender Ave',
+        city: 'Denver',
+        state: 'Colorado',
+        postal_code: '12345',
+        country: 'United States',
+        longitute: '-100',
+        latitude: '30',
+        phone: '1112223333',
+        website_url: 'http://brews.com',
+        updated_at: '2020-01-01T21:21:20.283Z'
+      }
+    ])
+
+    const mockToggleBreweryToUserList = jest.fn(); 
+
+    render(
+      <BrowserRouter>
+        <BreweryDetails
+          name='Denver_Brews'
+          toggleBreweryToUserList={mockToggleBreweryToUserList}
+          breweriesVisited={[]}
+          breweriesToVisit={[]}
+        />
+      </BrowserRouter>
+    )
+
+    const markToVisitBtn = await waitFor(() => screen.getByRole('button', { name: 'Mark as To Visit' }));
+    
+    fireEvent.click(markToVisitBtn);
+
+    expect(mockToggleBreweryToUserList).toHaveBeenCalledTimes(1);
+    expect(mockToggleBreweryToUserList).toHaveBeenCalledWith('Denver Brews', 'breweriesToVisit');
+  });
+
+  it('when a user clicks "Mark as Visited", toggleBreweryToUserList should be called', async () => {
+    fetchBreweryByName.mockResolvedValue([
+      {
+        id: 1,
+        name: 'Denver Brews',
+        brewery_type: 'micro',
+        street: '1 Lavender Ave',
+        city: 'Denver',
+        state: 'Colorado',
+        postal_code: '12345',
+        country: 'United States',
+        longitute: '-100',
+        latitude: '30',
+        phone: '1112223333',
+        website_url: 'http://brews.com',
+        updated_at: '2020-01-01T21:21:20.283Z'
+      }
+    ])
+
+    const mockToggleBreweryToUserList = jest.fn();
+
+    render(
+      <BrowserRouter>
+        <BreweryDetails
+          name='Denver_Brews'
+          toggleBreweryToUserList={mockToggleBreweryToUserList}
+          breweriesVisited={[]}
+          breweriesToVisit={[]}
+        />
+      </BrowserRouter>
+    )
+
+    const markVisitedBtn = await waitFor(() => screen.getByRole('button', { name: 'Mark as Visited' }));
+
+    fireEvent.click(markVisitedBtn);
+
+    expect(mockToggleBreweryToUserList).toHaveBeenCalledTimes(1);
+    expect(mockToggleBreweryToUserList).toHaveBeenCalledWith('Denver Brews', 'breweriesVisited');
   })
 })

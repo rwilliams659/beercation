@@ -4,10 +4,11 @@ import propTypes from 'prop-types'
 import bottleCapIcon from '../images/bottle-cap.png'
 import { Link } from 'react-router-dom'
 
-const UserBreweryCard = ({ name, type, id, city, state, view, toggleBreweryToUserList }) => {
+const UserBreweryCard = ({ name, type, city, state, view, toggleBreweryToUserList }) => {
+  const formattedName = name.replace(/\s/g, '_')
   return (
     <section className='BreweryCard'>
-      <Link to={`/breweries/${id}`}>
+      <Link to={`/breweries/${formattedName}`}>
       <article className='card-body'>
         <section className='icons-tags'>
           <img src={bottleCapIcon} alt='bottle cap' />
@@ -34,7 +35,6 @@ const UserBreweryCard = ({ name, type, id, city, state, view, toggleBreweryToUse
 UserBreweryCard.propTypes = {
   name: propTypes.string.isRequired,
   type: propTypes.string.isRequired,
-  id: propTypes.number.isRequired,
   city: propTypes.string.isRequired,
   state: propTypes.string.isRequired,
   view: propTypes.string.isRequired,

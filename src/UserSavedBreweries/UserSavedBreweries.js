@@ -10,7 +10,6 @@ const UserSavedBreweries = ({ userBreweries, view, toggleBreweryToUserList }) =>
       key={brewery.id}
       name={brewery.name}
       type={brewery.brewery_type}
-      id={brewery.id}
       city={brewery.city}
       state={brewery.state}
       view={view}

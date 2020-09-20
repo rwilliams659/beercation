@@ -1,24 +1,19 @@
-export default class ApiCalls {
-  constructor() {
-    this.baseURL = 'https://api.openbrewerydb.org/breweries?';
-  }
+const baseURL = 'https://api.openbrewerydb.org/breweries?';
 
-  fetchSearchResults = (searchTerm, pageNum) => {
-    return fetch(`${this.baseURL}by_city=${searchTerm}&per_page=50&page=${pageNum}`)
-      .then(response => this.checkResponse(response))
-  }
+export const fetchSearchResults = (searchTerm, pageNum) => {
+  return fetch(`${baseURL}by_city=${searchTerm}&per_page=50&page=${pageNum}`)
+    .then(response => checkResponse(response))
+}
 
-  fetchBreweryByName = (name) => {
-    return fetch(`${this.baseURL}by_name=${name}`)
-      .then(response => this.checkResponse(response))
-  }
+export const fetchBreweryByName = (name) => {
+  return fetch(`${baseURL}by_name=${name}`)
+    .then(response => checkResponse(response))
+}
 
-  checkResponse = (response) => {
-    if (!response.ok) {
-      throw new Error(response.statusText)
-    } else {
-      return response.json();
-    }
+export const checkResponse = (response) => {
+  if (!response.ok) {
+    throw new Error(response.statusText)
+  } else {
+    return response.json();
   }
-
 }

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import Header from '../Header/Header';
 import SearchForm from '../SearchForm/SearchForm'
-import ApiCalls from '../helpers/apiCalls'
+import { fetchSearchResults, fetchBreweryByName } from '../helpers/apiCalls'
 import { Route } from 'react-router-dom'
 import Breweries from '../Breweries/Breweries';
 import UserSavedBreweries from '../UserSavedBreweries/UserSavedBreweries';
@@ -11,7 +11,6 @@ import BreweryDetails from '../BreweryDetails/BreweryDetails';
 class App extends Component {
   constructor() {
     super()
-    this.apiCalls = new ApiCalls();
     this.state = {
       searchResults: [],
       filteredSearchResults: [],
@@ -25,8 +24,8 @@ class App extends Component {
     this.setState({ error: ''})
     this.clearSearchResults('filteredSearchResults'); 
     Promise.all([
-      this.apiCalls.fetchSearchResults(searchTerm, 1),
-      this.apiCalls.fetchSearchResults(searchTerm, 2)
+      fetchSearchResults(searchTerm, 1),
+      fetchSearchResults(searchTerm, 2)
     ])
       .then(([response1, response2]) => {
         const searchResults = response1.concat(response2)
@@ -59,7 +58,7 @@ class App extends Component {
       this.setState({ [list]: newStateList })
     } else {
       const formattedName = name.replace(/\s/g, '_')
-      this.apiCalls.fetchBreweryByName(formattedName)
+      fetchBreweryByName(formattedName)
         .then(response => {
           const brewery = response[0]
           if (!this.state[list].includes(brewery)) {

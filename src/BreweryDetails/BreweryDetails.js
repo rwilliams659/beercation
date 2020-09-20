@@ -1,14 +1,12 @@
 import React, { Component } from 'react'
 import './BreweryDetails.css'
 import propTypes from 'prop-types'
-import brewery1 from '../images/brewery1.jpg'
 import { Link } from 'react-router-dom'
-import ApiCalls from '../helpers/apiCalls'
+import { fetchBreweryByName } from '../helpers/apiCalls'
 
 class BreweryDetails extends Component {
   constructor(props) {
     super(props)
-    this.apiCalls = new ApiCalls();
     this.state = {
       brewery: {},
       error: ''
@@ -16,7 +14,7 @@ class BreweryDetails extends Component {
   }
 
   componentDidMount = () => {
-    this.apiCalls.fetchBreweryByName(this.props.name)
+    fetchBreweryByName(this.props.name)
       .then(brewery => {
         if (brewery.length > 0) {
           this.setState({ brewery: brewery[0] })

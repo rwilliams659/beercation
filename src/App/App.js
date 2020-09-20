@@ -99,7 +99,7 @@ class App extends Component {
               />
             </main>
           }/>
-          <Route exact path='/to-visit' render={() => 
+          <Route exact path='/to-visit/' render={() => 
             <main>
               <UserSavedBreweries 
                 userBreweries={this.state.breweriesToVisit}
@@ -108,7 +108,7 @@ class App extends Component {
               />
             </main>
         }/>
-        <Route exact path='/visited' render={() =>
+        <Route exact path='/visited/' render={() =>
           <main>
             <UserSavedBreweries
               userBreweries={this.state.breweriesVisited}

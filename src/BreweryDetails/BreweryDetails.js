@@ -1,14 +1,12 @@
 import React, { Component } from 'react'
 import './BreweryDetails.css'
 import propTypes from 'prop-types'
-import brewery1 from '../images/brewery1.jpg'
 import { Link } from 'react-router-dom'
-import ApiCalls from '../helpers/apiCalls'
+import { fetchBreweryByName } from '../helpers/apiCalls'
 
 class BreweryDetails extends Component {
   constructor(props) {
     super(props)
-    this.apiCalls = new ApiCalls();
     this.state = {
       brewery: {},
       error: ''
@@ -16,7 +14,7 @@ class BreweryDetails extends Component {
   }
 
   componentDidMount = () => {
-    this.apiCalls.fetchBreweryByName(this.props.name)
+    fetchBreweryByName(this.props.name)
       .then(brewery => {
         if (brewery.length > 0) {
           this.setState({ brewery: brewery[0] })
@@ -31,8 +29,6 @@ class BreweryDetails extends Component {
     const inBreweriesToVisit = this.props.breweriesToVisit.find(savedBrewery => savedBrewery.id === this.state.brewery.id)
     const inBreweriesVisited = this.props.breweriesVisited.find(savedBrewery => savedBrewery.id === this.state.brewery.id);
 
-    console.log(this.state.brewery)
-
     return (
     <>
     { Object.keys(this.state.brewery).length === 0 && !this.state.error &&
@@ -41,7 +37,7 @@ class BreweryDetails extends Component {
     { this.state.error &&
       <h2>{this.state.error}</h2>
     }
-    { Object.keys(this.state.brewery).length > 0 && 
+      { Object.keys(this.state.brewery).length > 0 && 
       <section className='BreweryDetails'>
         <section className='img-column'>
           <Link to='/' className='back-link'><button className='back-btn'>← Back to Results</button></Link>

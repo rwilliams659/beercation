@@ -62,6 +62,40 @@ describe('App', () => {
     expect(homeView).toBeInTheDocument(); 
   });
 
+  it('the To Visit page should have a default message when no breweries have been marked as To Visit', () => {
+
+    render(
+      <MemoryRouter>
+        < App />
+      </MemoryRouter>
+    )
+
+    const toVisitLink = screen.getByRole('link', { name: 'TO VISIT' });
+
+    fireEvent.click(toVisitLink);
+
+    const defaultMsg = screen.getByText('You don\'t get have any breweries set as "To Visit" yet! Return to the homepage to search for new breweries and add them to your lists.');
+
+    expect(defaultMsg).toBeInTheDocument();
+  });
+
+  it('the Visited page should have a default message when no breweries have been marked as Visited', () => {
+
+    render(
+      <MemoryRouter>
+        < App />
+      </MemoryRouter>
+    )
+
+    const visitedLink = screen.getByRole('link', { name: 'VISITED' });
+
+    fireEvent.click(visitedLink);
+
+    const defaultMsg = screen.getByText('You don\'t get have any breweries set as "Visited" yet! Return to the homepage to search for new breweries and add them to your lists.');
+
+    expect(defaultMsg).toBeInTheDocument();
+  });
+
   it('should allow a user to enter a city name in the search bar and see a list of breweries in that city', async () => {
 
     fetchSearchResults.mockResolvedValueOnce([

@@ -7,12 +7,13 @@ class SearchForm extends Component {
     super(props)
     this.state = {
       searchTerm: '',
+      disabled: true
     }
   }
 
   handleChange = event => {
     const searchTerm = event.target.value
-    this.setState({ searchTerm })
+    this.setState({ searchTerm }, () => this.setState({ disabled: this.state.searchTerm.length === 0 }));
   }
 
   handleSubmit = event => {
@@ -20,11 +21,10 @@ class SearchForm extends Component {
     if (this.state.searchTerm) {
       this.props.getSearchResults(this.state.searchTerm); 
     }
-    this.setState({ searchTerm: ''})
+    this.setState({ searchTerm: '', disabled: true})
   }
 
   render() {
-    const disable = this.state.searchTerm.length === 0;
     return (
       <section className='SearchForm'>
         <section className='intro-text'>
@@ -35,7 +35,7 @@ class SearchForm extends Component {
           <label htmlFor='search' className='search-label'> Search the city you plan to visit below to see a list of breweries, bars, and brewpubs in the area.</label>
           <input id='search' type='text' placeholder='Enter a city name' value={this.state.searchTerm} onChange={this.handleChange}/>
           <p className='error'>{this.props.error ? this.props.error : ''}</p>
-          <input type='submit' value='Search' className='search-btn' onClick={this.handleSubmit} disabled={disable}/>
+          <input type='submit' value='Search' className='search-btn' onClick={this.handleSubmit} disabled={this.state.disabled}/>
         </form>
       </section>
     )

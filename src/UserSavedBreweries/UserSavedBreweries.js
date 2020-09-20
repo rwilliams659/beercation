@@ -18,7 +18,7 @@ const UserSavedBreweries = ({ userBreweries, view, toggleBreweryToUserList }) =>
   )
 
   return (
-    <section className='UserSavedBreweries Breweries'>
+    <section className='Breweries'>
       <h2 className='user-saved-heading'>Breweries {view}</h2>
       {cards.length > 0 && 
         <section className='brewery-cards'>

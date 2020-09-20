@@ -10,9 +10,9 @@ describe('UserBreweryCard', () => {
     render(
       <BrowserRouter>
         <UserBreweryCard
+          key={1}
           name='Denver Brews'
           type='micro'
-          id={1}
           city='Denver'
           state='Colorado'
           view='To Visit'
@@ -39,9 +39,9 @@ describe('UserBreweryCard', () => {
     render(
       <BrowserRouter>
         <UserBreweryCard
+          key={1}
           name='Denver Brews'
           type='micro'
-          id={1}
           city='Denver'
           state='Colorado'
           view='Visited'
@@ -70,9 +70,9 @@ describe('UserBreweryCard', () => {
     render(
       <BrowserRouter>
         <UserBreweryCard
+          key={1}
           name='Denver Brews'
           type='micro'
-          id={1}
           city='Denver'
           state='Colorado'
           view='To Visit'
@@ -86,7 +86,7 @@ describe('UserBreweryCard', () => {
     fireEvent.click(button);
 
     expect(mockToggleBreweryToUserList).toHaveBeenCalledTimes(1);
-    expect(mockToggleBreweryToUserList).toHaveBeenCalledWith(1, 'breweriesToVisit');
+    expect(mockToggleBreweryToUserList).toHaveBeenCalledWith('Denver Brews', 'breweriesToVisit');
   });
 
   it('should call toggleBreweryToUserList when Unmark button is clicked on the Visited page', () => {
@@ -96,9 +96,9 @@ describe('UserBreweryCard', () => {
     render(
       <BrowserRouter>
         <UserBreweryCard
+          key={1}
           name='Denver Brews'
           type='micro'
-          id={1}
           city='Denver'
           state='Colorado'
           view='Visited'
@@ -112,6 +112,6 @@ describe('UserBreweryCard', () => {
     fireEvent.click(button);
 
     expect(mockToggleBreweryToUserList).toHaveBeenCalledTimes(1);
-    expect(mockToggleBreweryToUserList).toHaveBeenCalledWith(1, 'breweriesVisited');
+    expect(mockToggleBreweryToUserList).toHaveBeenCalledWith('Denver Brews', 'breweriesVisited');
   });
 })

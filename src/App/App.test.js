@@ -268,4 +268,65 @@ describe('App', () => {
     expect(breweryCard1).toBeInTheDocument();
     expect(breweryCard2).toBeInTheDocument();
   });
+
+  it('if a user searches for breweries, filters, and the filter yields no results, they should see a message indicating that', async () => {
+
+    fetchSearchResults.mockResolvedValueOnce([
+      {
+        id: 1,
+        name: 'Denver Brews',
+        brewery_type: 'micro',
+        street: '1 Lavender Ave',
+        city: 'Denver',
+        state: 'Colorado',
+        postal_code: '12345',
+        country: 'United States',
+        longitute: '-100',
+        latitude: '30',
+        phone: '1112223333',
+        website_url: 'http://brews.com',
+        updated_at: '2020-01-01T21:21:20.283Z'
+      },
+    ])
+
+    fetchSearchResults.mockResolvedValueOnce([
+      {
+        id: 2,
+        name: 'Portland Brews',
+        brewery_type: 'brewpub',
+        street: '2 Drurey Lane',
+        city: 'Portland',
+        state: 'Oregon',
+        postal_code: '67890',
+        country: 'United States',
+        longitute: '-50',
+        latitude: '40',
+        phone: '1384028482',
+        website_url: 'http://brews-2.com',
+        updated_at: '2017-05-03T21:21:20.283Z'
+      }
+    ])
+
+    render(
+      <MemoryRouter>
+        < App />
+      </MemoryRouter>
+    )
+
+    const searchBar = screen.getByPlaceholderText('Enter a city name');
+    const searchBtn = screen.getByRole('button', { name: 'Search' });
+
+    fireEvent.change(searchBar, { target: { value: 'Denver' } });
+    fireEvent.click(searchBtn);
+
+    const largeCheckbox = await waitFor(() => screen.getByRole('checkbox', { name: 'Large' }));
+    const filterBtn = screen.getByRole('button', { name: 'Filter search' })
+
+    fireEvent.click(largeCheckbox);
+    fireEvent.click(filterBtn);
+
+    const message = screen.getByText('Sorry, no results match your filter term(s).')
+
+    expect(message).toBeInTheDocument();
+  });
 })

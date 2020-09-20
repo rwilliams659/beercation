@@ -109,10 +109,78 @@ describe('BreweryDetails', () => {
     const errorMsg = await waitFor(() => screen.getByText('No brewery found'));
 
     expect(errorMsg).toBeInTheDocument();
+  });
+
+  it('should indicate if it\'s in user\'s To Visit list', async () => {
+
+    const brewery = {
+      id: 1,
+      name: 'Denver Brews',
+      brewery_type: 'micro',
+      street: '1 Lavender Ave',
+      city: 'Denver',
+      state: 'Colorado',
+      postal_code: '12345',
+      country: 'United States',
+      longitute: '-100',
+      latitude: '30',
+      phone: '1112223333',
+      website_url: 'http://brews.com',
+      updated_at: '2020-01-01T21:21:20.283Z'
+    }
+
+    fetchBreweryByName.mockResolvedValue([brewery])
+
+    render(
+      <BrowserRouter>
+        <BreweryDetails
+          name='Denver_Brews'
+          toggleBreweryToUserList={jest.fn()}
+          breweriesVisited={[]}
+          breweriesToVisit={[brewery]}
+        />
+      </BrowserRouter>
+    )
+
+  const toVisitTag = await waitFor(() => screen.getByText('To Visit', { exact: true}));
+  const toVisitBtn = await waitFor(() => screen.getByRole('button', { name: 'Unmark as To Visit'}));
+
+  expect(toVisitTag).toBeInTheDocument();
+  expect(toVisitBtn).toBeInTheDocument(); 
+  });
+
+  it('should indicate if it\'s in user\'s Visited list', async () => {
+
+    const brewery = {
+      id: 1,
+      name: 'Denver Brews',
+      brewery_type: 'micro',
+      street: '1 Lavender Ave',
+      city: 'Denver',
+      state: 'Colorado',
+      postal_code: '12345',
+      country: 'United States',
+      longitute: '-100',
+      latitude: '30',
+      phone: '1112223333',
+      website_url: 'http://brews.com',
+      updated_at: '2020-01-01T21:21:20.283Z'
+    }
+
+    fetchBreweryByName.mockResolvedValue([brewery])
+
+    render(
+      <BrowserRouter>
+        <BreweryDetails
+          name='Denver_Brews'
+          toggleBreweryToUserList={jest.fn()}
+          breweriesVisited={[brewery]}
+          breweriesToVisit={[]}
+        />
+      </BrowserRouter>
+    )
+
+    const visitedTag = await waitFor(() => screen.getByText('Visited', { exact: true }));
+    const visitedBtn = await waitFor(() => screen.getByRole('button', { name: 'Unmark as Visited' }));
   })
-
 })
-
-//test rendering when it's in To Visit (tag & button)
-
-//test rendering when it's in Visited (tag & button)

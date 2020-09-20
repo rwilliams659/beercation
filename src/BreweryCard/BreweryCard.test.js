@@ -10,9 +10,9 @@ describe('BreweryCard', () => {
     render (
       <BrowserRouter>
         <BreweryCard
+          key={1}
           name='Denver Brews'
           type='bar'
-          id={1}
           city='Denver'
           state='Colorado'
           toggleBreweryToUserList={jest.fn()}
@@ -60,9 +60,9 @@ describe('BreweryCard', () => {
     render(
       <BrowserRouter>
         <BreweryCard
+          key={1}
           name='Denver Brews'
           type='bar'
-          id={1}
           city='Denver'
           state='Colorado'
           toggleBreweryToUserList={jest.fn()}
@@ -98,9 +98,9 @@ describe('BreweryCard', () => {
     render(
       <BrowserRouter>
         <BreweryCard
+          key={1}
           name='Denver Brews'
           type='bar'
-          id={1}
           city='Denver'
           state='Colorado'
           toggleBreweryToUserList={jest.fn()}
@@ -121,9 +121,9 @@ describe('BreweryCard', () => {
     render(
       <BrowserRouter>
         <BreweryCard
+          key={1}
           name='Denver Brews'
           type='bar'
-          id={1}
           city='Denver'
           state='Colorado'
           toggleBreweryToUserList={mocktoggleBreweryToUserList}
@@ -140,8 +140,8 @@ describe('BreweryCard', () => {
     fireEvent.click(visitedBtn);
 
     expect(mocktoggleBreweryToUserList).toHaveBeenCalledTimes(2);
-    expect(mocktoggleBreweryToUserList).toHaveBeenCalledWith(1, 'breweriesToVisit')
-    expect(mocktoggleBreweryToUserList).toHaveBeenCalledWith(1, 'breweriesVisited')
+    expect(mocktoggleBreweryToUserList).toHaveBeenCalledWith('Denver Brews', 'breweriesToVisit')
+    expect(mocktoggleBreweryToUserList).toHaveBeenCalledWith('Denver Brews', 'breweriesVisited')
   });
   it('should have a button that says "Unmark as To Visit" if already marked as "To Visit"', () => {
 
@@ -164,9 +164,9 @@ describe('BreweryCard', () => {
     render(
       <BrowserRouter>
         <BreweryCard
+          key={1}
           name='Denver Brews'
           type='micro'
-          id={1}
           city='Denver'
           state='Colorado'
           toggleBreweryToUserList={jest.fn()}
@@ -202,9 +202,9 @@ describe('BreweryCard', () => {
     render(
       <BrowserRouter>
         <BreweryCard
+          key={1}
           name='Denver Brews'
           type='micro'
-          id={1}
           city='Denver'
           state='Colorado'
           toggleBreweryToUserList={jest.fn()}

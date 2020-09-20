@@ -43,8 +43,8 @@ describe('BreweryDetails', () => {
     const name = await waitFor(() => screen.getByRole('heading', { name: 'Denver Brews'}));
     const address = await waitFor(() => screen.getByText('1 Lavender Ave', { exact: false }));
     const phone = await waitFor(() => screen.getByText('Telephone: 1112223333'));
-    const markToVisitBtn = await waitFor(() => screen.getByRole('button', { name: 'Mark as To Visit'}));
-    const markVisitedBtn = await waitFor(() => screen.getByRole('button', {name: 'Mark as Visited'}))
+    const markToVisitBtn = await waitFor(() => screen.getByRole('button', { name: 'Mark Denver Brews as To Visit'}));
+    const markVisitedBtn = await waitFor(() => screen.getByRole('button', { name: 'Mark Denver Brews as Visited'}))
 
     expect(backBtn).toBeInTheDocument();
     expect(image).toBeInTheDocument();
@@ -142,8 +142,8 @@ describe('BreweryDetails', () => {
       </BrowserRouter>
     )
 
-  const toVisitTag = await waitFor(() => screen.getByText('To Visit', { exact: true}));
-  const toVisitBtn = await waitFor(() => screen.getByRole('button', { name: 'Unmark as To Visit'}));
+  const toVisitTag = await waitFor(() => screen.getByLabelText('Denver Brews marked as "to visit"'));
+  const toVisitBtn = await waitFor(() => screen.getByRole('button', { name: 'Unmark Denver Brews as To Visit'}));
 
   expect(toVisitTag).toBeInTheDocument();
   expect(toVisitBtn).toBeInTheDocument(); 
@@ -180,8 +180,8 @@ describe('BreweryDetails', () => {
       </BrowserRouter>
     )
 
-    const visitedTag = await waitFor(() => screen.getByText('Visited', { exact: true }));
-    const visitedBtn = await waitFor(() => screen.getByRole('button', { name: 'Unmark as Visited' }));
+    const visitedTag = await waitFor(() => screen.getByLabelText('Denver Brews marked as "visited"'));
+    const visitedBtn = await waitFor(() => screen.getByRole('button', { name: 'Unmark Denver Brews as Visited' }));
 
     expect(visitedTag).toBeInTheDocument();
     expect(visitedBtn).toBeInTheDocument();
@@ -219,7 +219,7 @@ describe('BreweryDetails', () => {
       </BrowserRouter>
     )
 
-    const markToVisitBtn = await waitFor(() => screen.getByRole('button', { name: 'Mark as To Visit' }));
+    const markToVisitBtn = await waitFor(() => screen.getByRole('button', { name: 'Mark Denver Brews as To Visit' }));
     
     fireEvent.click(markToVisitBtn);
 
@@ -259,7 +259,7 @@ describe('BreweryDetails', () => {
       </BrowserRouter>
     )
 
-    const markVisitedBtn = await waitFor(() => screen.getByRole('button', { name: 'Mark as Visited' }));
+    const markVisitedBtn = await waitFor(() => screen.getByRole('button', { name: 'Mark Denver Brews as Visited' }));
 
     fireEvent.click(markVisitedBtn);
 

@@ -16,12 +16,14 @@ class App extends Component {
       filteredSearchResults: [],
       error: '',
       breweriesToVisit: [],
-      breweriesVisited: []
+      breweriesVisited: [],
+      filtered: false
     }
   }
 
   getSearchResults = (searchTerm) => {
-    this.setState({ error: ''})
+    this.setState({ error: ''});
+    this.setState({ filtered: false })
     this.clearSearchResults('filteredSearchResults'); 
     Promise.all([
       fetchSearchResults(searchTerm, 1),
@@ -46,7 +48,7 @@ class App extends Component {
       searchTerms = searchTerms.concat(['planning', 'proprietor', 'contract'])
     }
     const filteredSearchResults = this.state.searchResults.filter(result => searchTerms.includes(result.brewery_type));
-    this.setState({ filteredSearchResults})
+    this.setState({ filteredSearchResults, filtered: true})
   }
 
   toggleBreweryToUserList = (name, list) => {
@@ -73,6 +75,10 @@ class App extends Component {
     this.setState({ [listToClear]: [] })
   }
 
+  resetFilter = () => {
+    this.setState({ filterSearchResults: [], filtered: false})
+  }
+
   render() {
     return (
       <section className="App">
@@ -90,6 +96,8 @@ class App extends Component {
                 breweriesVisited={this.state.breweriesVisited}
                 filterSearchResults={this.filterSearchResults}
                 filteredSearchResults={this.state.filteredSearchResults}
+                filtered={this.state.filtered}
+                resetFilter={this.resetFilter}
               />
             </main>
           }/>

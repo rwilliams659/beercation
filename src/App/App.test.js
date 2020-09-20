@@ -1241,4 +1241,341 @@ describe('App', () => {
 
     expect(breweryCard2).toBeInTheDocument();
   });
+
+  it('should allow a user to mark a brewery as "To Visit" from search results, go to the "To Visit" page, and click on it to view details from there', async () => {
+    fetchSearchResults.mockResolvedValueOnce([
+      {
+        id: 1,
+        name: 'Denver Brews',
+        brewery_type: 'micro',
+        street: '1 Lavender Ave',
+        city: 'Denver',
+        state: 'Colorado',
+        postal_code: '12345',
+        country: 'United States',
+        longitute: '-100',
+        latitude: '30',
+        phone: '1112223333',
+        website_url: 'http://brews.com',
+        updated_at: '2020-01-01T21:21:20.283Z'
+      },
+    ])
+
+    fetchSearchResults.mockResolvedValueOnce([
+      {
+        id: 2,
+        name: 'Portland Brews',
+        brewery_type: 'brewpub',
+        street: '2 Drurey Lane',
+        city: 'Portland',
+        state: 'Oregon',
+        postal_code: '67890',
+        country: 'United States',
+        longitute: '-50',
+        latitude: '40',
+        phone: '1384028482',
+        website_url: 'http://brews-2.com',
+        updated_at: '2017-05-03T21:21:20.283Z'
+      }
+    ])
+
+    fetchBreweryByName.mockResolvedValue([
+      {
+        id: 1,
+        name: 'Denver Brews',
+        brewery_type: 'micro',
+        street: '1 Lavender Ave',
+        city: 'Denver',
+        state: 'Colorado',
+        postal_code: '12345',
+        country: 'United States',
+        longitute: '-100',
+        latitude: '30',
+        phone: '1112223333',
+        website_url: 'http://brews.com',
+        updated_at: '2020-01-01T21:21:20.283Z'
+      },
+    ])
+
+    render(
+      <MemoryRouter>
+        < App />
+      </MemoryRouter>
+    )
+
+    const searchBar = screen.getByPlaceholderText('Enter a city name');
+    const searchBtn = screen.getByRole('button', { name: 'Search' });
+
+    fireEvent.change(searchBar, { target: { value: 'Denver' } });
+    fireEvent.click(searchBtn);
+
+    const markToVisitBtn = await waitFor(() => screen.getByLabelText('Mark Denver Brews as To Visit'));
+
+    fireEvent.click(markToVisitBtn);
+
+    const toVisitLink = screen.getByRole('link', { name: 'TO VISIT' });
+
+    fireEvent.click(toVisitLink);
+
+    const breweryCard = await waitFor(() => screen.getByRole('heading', { name: 'Denver Brews' }));
+
+    fireEvent.click(breweryCard);
+
+    const breweryPhone = await waitFor(() => screen.getByText('Telephone: 1112223333'));
+
+    expect(breweryPhone).toBeInTheDocument();
+  });
+
+  it('should allow a user to mark a brewery as "To Visit" from search results, go to the "To Visit" page, and click "UnMark as To Visit" to remove it from the page', async () => {
+    fetchSearchResults.mockResolvedValueOnce([
+      {
+        id: 1,
+        name: 'Denver Brews',
+        brewery_type: 'micro',
+        street: '1 Lavender Ave',
+        city: 'Denver',
+        state: 'Colorado',
+        postal_code: '12345',
+        country: 'United States',
+        longitute: '-100',
+        latitude: '30',
+        phone: '1112223333',
+        website_url: 'http://brews.com',
+        updated_at: '2020-01-01T21:21:20.283Z'
+      },
+    ])
+
+    fetchSearchResults.mockResolvedValueOnce([
+      {
+        id: 2,
+        name: 'Portland Brews',
+        brewery_type: 'brewpub',
+        street: '2 Drurey Lane',
+        city: 'Portland',
+        state: 'Oregon',
+        postal_code: '67890',
+        country: 'United States',
+        longitute: '-50',
+        latitude: '40',
+        phone: '1384028482',
+        website_url: 'http://brews-2.com',
+        updated_at: '2017-05-03T21:21:20.283Z'
+      }
+    ])
+
+    fetchBreweryByName.mockResolvedValue([
+      {
+        id: 1,
+        name: 'Denver Brews',
+        brewery_type: 'micro',
+        street: '1 Lavender Ave',
+        city: 'Denver',
+        state: 'Colorado',
+        postal_code: '12345',
+        country: 'United States',
+        longitute: '-100',
+        latitude: '30',
+        phone: '1112223333',
+        website_url: 'http://brews.com',
+        updated_at: '2020-01-01T21:21:20.283Z'
+      },
+    ])
+
+    render(
+      <MemoryRouter>
+        < App />
+      </MemoryRouter>
+    )
+
+    const searchBar = screen.getByPlaceholderText('Enter a city name');
+    const searchBtn = screen.getByRole('button', { name: 'Search' });
+
+    fireEvent.change(searchBar, { target: { value: 'Denver' } });
+    fireEvent.click(searchBtn);
+
+    const markToVisitBtn = await waitFor(() => screen.getByLabelText('Mark Denver Brews as To Visit'));
+
+    fireEvent.click(markToVisitBtn);
+
+    const toVisitLink = screen.getByRole('link', { name: 'TO VISIT' });
+
+    fireEvent.click(toVisitLink);
+
+    const breweryCardUnmarkBtn = await waitFor(() => screen.getByLabelText('Unmark Denver Brews as To Visit'));
+
+    fireEvent.click(breweryCardUnmarkBtn);
+
+    const message = screen.getByText('You don\'t get have any breweries set as "To Visit" yet! Return to the homepage to search for new breweries and add them to your lists.');
+
+    expect(message).toBeInTheDocument();
+  });
+
+  it('should allow a user to mark a brewery as "Visited" from search results, go to the "Visited" page, and click on it to view details from there', async () => {
+    fetchSearchResults.mockResolvedValueOnce([
+      {
+        id: 1,
+        name: 'Denver Brews',
+        brewery_type: 'micro',
+        street: '1 Lavender Ave',
+        city: 'Denver',
+        state: 'Colorado',
+        postal_code: '12345',
+        country: 'United States',
+        longitute: '-100',
+        latitude: '30',
+        phone: '1112223333',
+        website_url: 'http://brews.com',
+        updated_at: '2020-01-01T21:21:20.283Z'
+      },
+    ])
+
+    fetchSearchResults.mockResolvedValueOnce([
+      {
+        id: 2,
+        name: 'Portland Brews',
+        brewery_type: 'brewpub',
+        street: '2 Drurey Lane',
+        city: 'Portland',
+        state: 'Oregon',
+        postal_code: '67890',
+        country: 'United States',
+        longitute: '-50',
+        latitude: '40',
+        phone: '1384028482',
+        website_url: 'http://brews-2.com',
+        updated_at: '2017-05-03T21:21:20.283Z'
+      }
+    ])
+
+    fetchBreweryByName.mockResolvedValue([
+      {
+        id: 1,
+        name: 'Denver Brews',
+        brewery_type: 'micro',
+        street: '1 Lavender Ave',
+        city: 'Denver',
+        state: 'Colorado',
+        postal_code: '12345',
+        country: 'United States',
+        longitute: '-100',
+        latitude: '30',
+        phone: '1112223333',
+        website_url: 'http://brews.com',
+        updated_at: '2020-01-01T21:21:20.283Z'
+      },
+    ])
+
+    render(
+      <MemoryRouter>
+        < App />
+      </MemoryRouter>
+    )
+
+    const searchBar = screen.getByPlaceholderText('Enter a city name');
+    const searchBtn = screen.getByRole('button', { name: 'Search' });
+
+    fireEvent.change(searchBar, { target: { value: 'Denver' } });
+    fireEvent.click(searchBtn);
+
+    const markVisitedBtn = await waitFor(() => screen.getByLabelText('Mark Denver Brews as Visited'));
+
+    fireEvent.click(markVisitedBtn);
+
+    const visitedLink = screen.getByRole('link', { name: 'VISITED' });
+
+    fireEvent.click(visitedLink);
+
+    const breweryCard = await waitFor(() => screen.getByRole('heading', { name: 'Denver Brews' }));
+
+    fireEvent.click(breweryCard);
+
+    const breweryPhone = await waitFor(() => screen.getByText('Telephone: 1112223333'));
+
+    expect(breweryPhone).toBeInTheDocument();
+  });
+
+  it('should allow a user to mark a brewery as "Visited" from search results, go to the "Visited" page, and click "UnMark as Visited" to remove it from the page', async () => {
+    fetchSearchResults.mockResolvedValueOnce([
+      {
+        id: 1,
+        name: 'Denver Brews',
+        brewery_type: 'micro',
+        street: '1 Lavender Ave',
+        city: 'Denver',
+        state: 'Colorado',
+        postal_code: '12345',
+        country: 'United States',
+        longitute: '-100',
+        latitude: '30',
+        phone: '1112223333',
+        website_url: 'http://brews.com',
+        updated_at: '2020-01-01T21:21:20.283Z'
+      },
+    ])
+
+    fetchSearchResults.mockResolvedValueOnce([
+      {
+        id: 2,
+        name: 'Portland Brews',
+        brewery_type: 'brewpub',
+        street: '2 Drurey Lane',
+        city: 'Portland',
+        state: 'Oregon',
+        postal_code: '67890',
+        country: 'United States',
+        longitute: '-50',
+        latitude: '40',
+        phone: '1384028482',
+        website_url: 'http://brews-2.com',
+        updated_at: '2017-05-03T21:21:20.283Z'
+      }
+    ])
+
+    fetchBreweryByName.mockResolvedValue([
+      {
+        id: 1,
+        name: 'Denver Brews',
+        brewery_type: 'micro',
+        street: '1 Lavender Ave',
+        city: 'Denver',
+        state: 'Colorado',
+        postal_code: '12345',
+        country: 'United States',
+        longitute: '-100',
+        latitude: '30',
+        phone: '1112223333',
+        website_url: 'http://brews.com',
+        updated_at: '2020-01-01T21:21:20.283Z'
+      },
+    ])
+
+    render(
+      <MemoryRouter>
+        < App />
+      </MemoryRouter>
+    )
+
+    const searchBar = screen.getByPlaceholderText('Enter a city name');
+    const searchBtn = screen.getByRole('button', { name: 'Search' });
+
+    fireEvent.change(searchBar, { target: { value: 'Denver' } });
+    fireEvent.click(searchBtn);
+
+    const markVisitedBtn = await waitFor(() => screen.getByLabelText('Mark Denver Brews as Visited'));
+
+    fireEvent.click(markVisitedBtn);
+
+    const visitedLink = screen.getByRole('link', { name: 'VISITED' });
+
+    fireEvent.click(visitedLink);
+
+    const breweryCardUnmarkBtn = await waitFor(() => screen.getByLabelText('Unmark Denver Brews as Visited'));
+
+    fireEvent.click(breweryCardUnmarkBtn);
+
+    const message = screen.getByText('You don\'t get have any breweries set as "Visited" yet! Return to the homepage to search for new breweries and add them to your lists.');
+
+    expect(message).toBeInTheDocument();
+  });
+ 
 })

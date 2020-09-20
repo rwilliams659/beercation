@@ -75,6 +75,10 @@ class App extends Component {
     this.setState({ [listToClear]: [] })
   }
 
+  resetFilter = () => {
+    this.setState({ filterSearchResults: [], filtered: false})
+  }
+
   render() {
     return (
       <section className="App">
@@ -93,6 +97,7 @@ class App extends Component {
                 filterSearchResults={this.filterSearchResults}
                 filteredSearchResults={this.state.filteredSearchResults}
                 filtered={this.state.filtered}
+                resetFilter={this.resetFilter}
               />
             </main>
           }/>

@@ -4,7 +4,7 @@ import propTypes from 'prop-types'
 import BreweryCard from '../BreweryCard/BreweryCard'
 import FilterForm from '../FilterForm/FilterForm'
 
-const Breweries = ({ searchResults, toggleBreweryToUserList, breweriesToVisit, breweriesVisited, filterSearchResults, filteredSearchResults, filtered }) => {
+const Breweries = ({ searchResults, toggleBreweryToUserList, breweriesToVisit, breweriesVisited, filterSearchResults, filteredSearchResults, filtered, resetFilter }) => {
   let results; 
   filtered ? results = filteredSearchResults : results = searchResults;
   const sortedSearchResults = results.sort((a,b) => (a.name < b.name) ? -1 : (a.name > b.name) ? 1 : 0)
@@ -35,6 +35,7 @@ const Breweries = ({ searchResults, toggleBreweryToUserList, breweriesToVisit, b
             <FilterForm 
               searchResults={searchResults}
               filterSearchResults={filterSearchResults}
+              resetFilter={resetFilter}
             />
             <h2 className='results-heading'>Search Results</h2>
             <div className='extra-space'></div>
@@ -55,7 +56,8 @@ Breweries.propTypes = {
   breweriesVisited: propTypes.array.isRequired,
   filterSearchResults: propTypes.func.isRequired,
   filteredSearchResults: propTypes.array.isRequired,
-  filtered: propTypes.bool.isRequired
+  filtered: propTypes.bool.isRequired,
+  resetFilter: propTypes.func
 }
 
 

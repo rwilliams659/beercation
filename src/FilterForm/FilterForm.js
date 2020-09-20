@@ -49,7 +49,10 @@ class FilterForm extends Component {
       <section className='FilterForm'>
         <div className='filter-and-clear'>
           <p className='filter-text'>Filter by brewery type:</p>
-          <button className='clear-filters'>Clear all filters X</button>
+          <button className='clear-filters' onClick={() => {
+            this.clearCheckboxes();
+            this.props.resetFilter();
+            }}>Clear all filters X</button>
         </div>
         <form>
           <section className='row1'>
@@ -77,7 +80,8 @@ class FilterForm extends Component {
 
 FilterForm.propTypes = {
   searchResults: propTypes.array.isRequired,
-  filterSearchResults: propTypes.func.isRequired
+  filterSearchResults: propTypes.func.isRequired,
+  resetFilter: propTypes.func
 }
 
 

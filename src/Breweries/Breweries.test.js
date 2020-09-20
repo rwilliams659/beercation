@@ -50,6 +50,7 @@ describe('Breweries', () => {
           filterSearchResults={jest.fn()}
           filteredSearchResults={[]}
           filtered={false}
+          resetFilter={jest.fn()}
         />
       </BrowserRouter>
     )
@@ -128,6 +129,7 @@ describe('Breweries', () => {
           filterSearchResults={jest.fn()}
           filteredSearchResults={filteredResults}
           filtered={true}
+          resetFilter={jest.fn()}
         />
       </BrowserRouter>
     );
@@ -184,6 +186,7 @@ describe('Breweries', () => {
           filterSearchResults={jest.fn()}
           filteredSearchResults={filteredResults}
           filtered={true}
+          resetFilter={jest.fn()}
         />
       </BrowserRouter>
     );

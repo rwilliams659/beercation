@@ -4,13 +4,9 @@ import propTypes from 'prop-types'
 import BreweryCard from '../BreweryCard/BreweryCard'
 import FilterForm from '../FilterForm/FilterForm'
 
-const Breweries = ({ searchResults, toggleBreweryToUserList, breweriesToVisit, breweriesVisited, filterSearchResults, filteredSearchResults }) => {
+const Breweries = ({ searchResults, toggleBreweryToUserList, breweriesToVisit, breweriesVisited, filterSearchResults, filteredSearchResults, filtered }) => {
   let results; 
-  if (filteredSearchResults.length > 0) {
-    results = filteredSearchResults;
-  } else {
-    results = searchResults
-  }
+  filtered ? results = filteredSearchResults : results = searchResults;
   const sortedSearchResults = results.sort((a,b) => (a.name < b.name) ? -1 : (a.name > b.name) ? 1 : 0)
 
   const cards = sortedSearchResults.map(brewery => {
@@ -44,7 +40,7 @@ const Breweries = ({ searchResults, toggleBreweryToUserList, breweriesToVisit, b
             <div className='extra-space'></div>
           </section>
           <section className='brewery-cards'>
-            {cards}
+            {cards.length > 0 ? cards : <p>Sorry, no results match your filter term(s).</p>}
           </section>
         </>
        }
@@ -58,7 +54,8 @@ Breweries.propTypes = {
   breweriesToVisit: propTypes.array.isRequired,
   breweriesVisited: propTypes.array.isRequired,
   filterSearchResults: propTypes.func.isRequired,
-  filteredSearchResults: propTypes.array.isRequired
+  filteredSearchResults: propTypes.array.isRequired,
+  filtered: propTypes.bool.isRequired
 }
 
 

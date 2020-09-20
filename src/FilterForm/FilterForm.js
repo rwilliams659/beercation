@@ -29,7 +29,9 @@ class FilterForm extends Component {
         return key
       }
     });
-    this.props.filterSearchResults(searchTerms);
+    if (searchTerms.length > 0) {
+      this.props.filterSearchResults(searchTerms);
+    }
   }
 
   componentDidUpdate(prevProps) {

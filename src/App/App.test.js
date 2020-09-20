@@ -118,5 +118,26 @@ describe('App', () => {
     expect(breweryCard1).toBeInTheDocument();
     expect(breweryCard2).toBeInTheDocument(); 
     expect(searchBar.value).toBe('');
+  });
+
+  it('if a user enters a bad search term, they should see an error message', async () => {
+
+    fetchSearchResults.mockResolvedValue([])
+
+    render(
+      <MemoryRouter>
+        < App />
+      </MemoryRouter>
+    )
+
+    const searchBar = screen.getByPlaceholderText('Enter a city name');
+    const searchBtn = screen.getByRole('button', { name: 'Search' });
+
+    fireEvent.change(searchBar, { target: { value: 'Venus' } });
+    fireEvent.click(searchBtn);
+
+    const errorMsg = await waitFor(() => screen.getByText('Sorry, we couldn\'t find any results in Venus.'))
+
+    expect(errorMsg).toBeInTheDocument();
   })
 })

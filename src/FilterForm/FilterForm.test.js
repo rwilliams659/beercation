@@ -12,6 +12,7 @@ describe('FilterForm', () => {
         <FilterForm 
           searchResults={[]}
           filterSearchResults={jest.fn()}
+          resetFilter={jest.fn()}
         />
       </BrowserRouter>
     )
@@ -42,6 +43,7 @@ describe('FilterForm', () => {
         <FilterForm
           searchResults={[]}
           filterSearchResults={jest.fn()}
+          resetFilter={jest.fn()}
         />
       </BrowserRouter>
     )
@@ -61,12 +63,46 @@ describe('FilterForm', () => {
   it('should call filterSearchResults after user selects filter terms and clicks the filter button', () => {
 
     const mockFilterSearchResults = jest.fn()
+    
+    const searchResults = [
+      {
+        id: 1,
+        name: 'Denver Brews',
+        brewery_type: 'micro',
+        street: '1 Lavender Ave',
+        city: 'Denver',
+        state: 'Colorado',
+        postal_code: '12345',
+        country: 'United States',
+        longitute: '-100',
+        latitude: '30',
+        phone: '1112223333',
+        website_url: 'http://brews.com',
+        updated_at: '2020-01-01T21:21:20.283Z'
+      },
+      {
+        id: 2,
+        name: 'Portland Brews',
+        brewery_type: 'brewpub',
+        street: '2 Drurey Lane',
+        city: 'Portland',
+        state: 'Oregon',
+        postal_code: '67890',
+        country: 'United States',
+        longitute: '-50',
+        latitude: '40',
+        phone: '1384028482',
+        website_url: 'http://brews-2.com',
+        updated_at: '2017-05-03T21:21:20.283Z'
+      }
+    ]
 
     render(
       <BrowserRouter>
         <FilterForm
-          searchResults={[]}
+          searchResults={searchResults}
           filterSearchResults={mockFilterSearchResults}
+          resetFilter={jest.fn()}
         />
       </BrowserRouter>
     )
@@ -79,5 +115,60 @@ describe('FilterForm', () => {
 
     expect(mockFilterSearchResults).toHaveBeenCalledTimes(1);
     expect(mockFilterSearchResults).toHaveBeenCalledWith(['bar']);
-  })
+  });
+
+  it('should call resetFilter when Clear filter button is clicked', () => {
+
+    const mockResetFilter = jest.fn();
+    
+    const searchResults = [
+      {
+        id: 1,
+        name: 'Denver Brews',
+        brewery_type: 'micro',
+        street: '1 Lavender Ave',
+        city: 'Denver',
+        state: 'Colorado',
+        postal_code: '12345',
+        country: 'United States',
+        longitute: '-100',
+        latitude: '30',
+        phone: '1112223333',
+        website_url: 'http://brews.com',
+        updated_at: '2020-01-01T21:21:20.283Z'
+      },
+      {
+        id: 2,
+        name: 'Portland Brews',
+        brewery_type: 'brewpub',
+        street: '2 Drurey Lane',
+        city: 'Portland',
+        state: 'Oregon',
+        postal_code: '67890',
+        country: 'United States',
+        longitute: '-50',
+        latitude: '40',
+        phone: '1384028482',
+        website_url: 'http://brews-2.com',
+        updated_at: '2017-05-03T21:21:20.283Z'
+      }
+    ]
+
+    render(
+      <BrowserRouter>
+        <FilterForm
+          searchResults={searchResults}
+          filterSearchResults={jest.fn()}
+          resetFilter={mockResetFilter}
+        />
+      </BrowserRouter>
+    )
+
+    const clearFilterBtn = screen.getByRole('button', { name: 'Clear all filters X'})
+
+    fireEvent.click(clearFilterBtn);
+
+    expect(mockResetFilter).toHaveBeenCalledTimes(1);
+  });
+
 })

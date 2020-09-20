@@ -61,4 +61,62 @@ describe('App', () => {
 
     expect(homeView).toBeInTheDocument(); 
   });
+
+  it('should allow a user to enter a city name in the search bar and see a list of breweries in that city', async () => {
+
+    fetchSearchResults.mockResolvedValueOnce([
+      {
+        id: 1,
+        name: 'Denver Brews',
+        brewery_type: 'micro',
+        street: '1 Lavender Ave',
+        city: 'Denver',
+        state: 'Colorado',
+        postal_code: '12345',
+        country: 'United States',
+        longitute: '-100',
+        latitude: '30',
+        phone: '1112223333',
+        website_url: 'http://brews.com',
+        updated_at: '2020-01-01T21:21:20.283Z'
+      },
+    ])
+
+    fetchSearchResults.mockResolvedValueOnce([
+      {
+        id: 2,
+        name: 'Portland Brews',
+        brewery_type: 'brewpub',
+        street: '2 Drurey Lane',
+        city: 'Portland',
+        state: 'Oregon',
+        postal_code: '67890',
+        country: 'United States',
+        longitute: '-50',
+        latitude: '40',
+        phone: '1384028482',
+        website_url: 'http://brews-2.com',
+        updated_at: '2017-05-03T21:21:20.283Z'
+      }
+    ])
+
+    render(
+      <MemoryRouter>
+        < App />
+      </MemoryRouter>
+    )
+
+    const searchBar = screen.getByPlaceholderText('Enter a city name');
+    const searchBtn = screen.getByRole('button', { name: 'Search'});
+
+    fireEvent.change(searchBar, { target: { value: 'Denver' } });
+    fireEvent.click(searchBtn);
+
+    const breweryCard1 = await waitFor(() => screen.getByRole('heading', { name: 'Denver Brews' }));
+    const breweryCard2 = screen.getByRole('heading', { name: 'Portland Brews' });
+
+    expect(breweryCard1).toBeInTheDocument();
+    expect(breweryCard2).toBeInTheDocument(); 
+    expect(searchBar.value).toBe('');
+  })
 })

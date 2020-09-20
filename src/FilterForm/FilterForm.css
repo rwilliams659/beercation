@@ -16,6 +16,7 @@
   background-color: #282828;
   color: white; 
   border: none;
+  margin-left: 0.5em; 
 }
 
 .clear-filters:hover {

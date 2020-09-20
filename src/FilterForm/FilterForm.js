@@ -47,7 +47,10 @@ class FilterForm extends Component {
   render() {
     return (
       <section className='FilterForm'>
-        <p className='filter-text'>Filter by brewery type:</p>
+        <div className='filter-and-clear'>
+          <p className='filter-text'>Filter by brewery type:</p>
+          <button className='clear-filters'>Clear all filters X</button>
+        </div>
         <form>
           <section className='row1'>
             <input type='checkbox' id='option1' name='bar' checked={this.state.bar} onChange={this.handleInputChange}/>

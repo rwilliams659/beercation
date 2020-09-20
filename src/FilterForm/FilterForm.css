@@ -1,11 +1,25 @@
-.filter-text, .FilterForm {
+.FilterForm {
+  margin: 1em 1em 0 1em;
   text-align: left; 
 }
 
-.FilterForm {
+.filter-and-clear {
   display: flex;
-  flex-direction: column; 
-  margin: 1em 1em 0 1em;
+  margin: 0.5em 0;
+}
+
+.filter-text {
+  margin: 0;
+}
+
+.clear-filters {
+  background-color: #282828;
+  color: white; 
+  border: none;
+}
+
+.clear-filters:hover {
+  cursor: pointer;
 }
 
 .row1 {

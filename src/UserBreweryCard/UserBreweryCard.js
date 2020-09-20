@@ -22,10 +22,10 @@ const UserBreweryCard = ({ name, type, city, state, view, toggleBreweryToUserLis
       </Link>
       <section className='add-btns'>
         {view === 'To Visit' &&
-          <button className='to-visit-btn rmv-btn' onClick={() => toggleBreweryToUserList(name, 'breweriesToVisit')}>Unmark as {view}</button>
+          <button className='to-visit-btn rmv-btn' onClick={() => toggleBreweryToUserList(name, 'breweriesToVisit')} aria-label={`Unmark ${name} as To Visit`}>Unmark as {view}</button>
         }
         {view === 'Visited' &&
-          <button className='to-visit-btn rmv-btn' onClick={() => toggleBreweryToUserList(name, 'breweriesVisited')}>Unmark as {view}</button>
+          <button className='to-visit-btn rmv-btn' onClick={() => toggleBreweryToUserList(name, 'breweriesVisited')} aria-label={`Unmark ${name} as Visited`}>Unmark as {view}</button>
         }
       </section>
     </section>

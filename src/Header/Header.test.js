@@ -10,13 +10,13 @@ describe('Header', () => {
       <BrowserRouter>
         <Header/>
       </BrowserRouter>
-    )
+    );
 
-    const appName = screen.getByRole('heading');
+    const appName = screen.getByRole('heading', { name: 'BEERCATION' });
     const logo = screen.getByAltText('BEERCATION');
-    const nav1 = screen.getByText('HOME');
-    const nav2 = screen.getByText('TO VISIT');
-    const nav3 = screen.getByText('VISITED');
+    const nav1 = screen.getByRole('link', { name: 'HOME' });
+    const nav2 = screen.getByRole('link', { name: 'TO VISIT' });
+    const nav3 = screen.getByRole('link', { name: 'VISITED' });
 
     expect(appName).toBeInTheDocument();
     expect(logo).toBeInTheDocument();

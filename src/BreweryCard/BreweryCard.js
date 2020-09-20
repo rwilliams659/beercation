@@ -14,8 +14,8 @@ const BreweryCard = ({ name, type, city, state, toggleBreweryToUserList, inBrewe
         <section className='icons-tags'>
           <img src={bottleCapIcon} alt='bottle cap'/>
           <div>
-            { inBreweriesToVisit? <p className='tag1'>To Visit</p> : '' }
-            { inBreweriesVisited ? <p className='tag2'>Visited</p> : '' }
+            { inBreweriesToVisit? <p className='tag1' aria-label={`${name} marked as "to visit"`}>To Visit</p> : '' }
+              {inBreweriesVisited ? <p className='tag2' aria-label={`${name} marked as "visited"`}>Visited</p> : '' }
           </div>
         </section>
         <section className='card-content'>
@@ -27,12 +27,12 @@ const BreweryCard = ({ name, type, city, state, toggleBreweryToUserList, inBrewe
       </Link>
       <section className='add-btns'>
         {inBreweriesToVisit ? 
-        <button className='to-visit-btn' onClick={() => toggleBreweryToUserList(name, 'breweriesToVisit')}>Unmark as To Visit</button> : 
-        <button className='to-visit-btn' onClick={() => toggleBreweryToUserList(name, 'breweriesToVisit')}>Mark as To Visit</button>
+        <button className='to-visit-btn' onClick={() => toggleBreweryToUserList(name, 'breweriesToVisit')} aria-label={`Unmark ${name} as To Visit`}>Unmark as To Visit</button> : 
+        <button className='to-visit-btn' onClick={() => toggleBreweryToUserList(name, 'breweriesToVisit')} aria-label={`Mark ${name} as To Visit`}>Mark as To Visit</button>
         }
         {inBreweriesVisited ?   
-        <button className='visited-btn' onClick={() => toggleBreweryToUserList(name, 'breweriesVisited')}>Unmark as Visited</button> :
-        <button className='visited-btn' onClick={() => toggleBreweryToUserList(name, 'breweriesVisited')}>Mark as Visited</button> 
+        <button className='visited-btn' onClick={() => toggleBreweryToUserList(name, 'breweriesVisited')} aria-label={`Unmark ${name} as Visited`}>Unmark as Visited</button> :
+        <button className='visited-btn' onClick={() => toggleBreweryToUserList(name, 'breweriesVisited')} aria-label={`Mark ${name} as Visited`}>Mark as Visited</button> 
         }
       </section>
     </section>

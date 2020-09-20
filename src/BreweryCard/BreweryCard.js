@@ -14,8 +14,8 @@ const BreweryCard = ({ name, type, city, state, toggleBreweryToUserList, inBrewe
         <section className='icons-tags'>
           <img src={bottleCapIcon} alt='bottle cap'/>
           <div>
-            { inBreweriesToVisit? <p className='tag1'>To Visit</p> : '' }
-            { inBreweriesVisited ? <p className='tag2'>Visited</p> : '' }
+            { inBreweriesToVisit? <p className='tag1' aria-label={`${name} marked as "to visit"`}>To Visit</p> : '' }
+              {inBreweriesVisited ? <p className='tag2' aria-label={`${name} marked as "visited"`}>Visited</p> : '' }
           </div>
         </section>
         <section className='card-content'>

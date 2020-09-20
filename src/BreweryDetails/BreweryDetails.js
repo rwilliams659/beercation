@@ -42,8 +42,8 @@ class BreweryDetails extends Component {
         <section className='img-column'>
           <Link to='/' className='back-link'><button className='back-btn'>← Back to Results</button></Link>
           <div className='brewery-img' title='brewery'>
-            {inBreweriesToVisit ? <p className='tag1 tags'>To Visit</p> : ''}
-            {inBreweriesVisited ? <p className='tag2 tags'>Visited</p> : ''}
+            {inBreweriesToVisit ? <p className='tag1 tags' aria-label={`${this.state.brewery.name} marked as "to visit"`}>To Visit</p> : ''}
+            {inBreweriesVisited ? <p className='tag2 tags' aria-label={`${this.state.brewery.name} marked as "visited"`}>Visited</p> : ''}
           </div>
         </section>
         <section className='brewery-info'>
@@ -53,12 +53,12 @@ class BreweryDetails extends Component {
             <a href={this.state.brewery.website_url} target='_blank' rel='noopener noreferrer' className='brewery-link'>Learn more →</a>
           <section className='add-btns details-btns'>
             {inBreweriesToVisit ?
-              <button className='to-visit-btn' onClick={() => this.props.toggleBreweryToUserList(this.state.brewery.name, 'breweriesToVisit')}>Unmark as To Visit</button> :
-              <button className='to-visit-btn' onClick={() => this.props.toggleBreweryToUserList(this.state.brewery.name, 'breweriesToVisit')}>Mark as To Visit</button>
+                <button className='to-visit-btn' onClick={() => this.props.toggleBreweryToUserList(this.state.brewery.name, 'breweriesToVisit')} aria-label={`Unmark ${this.state.brewery.name} as To Visit`}>Unmark as To Visit</button> :
+                <button className='to-visit-btn' onClick={() => this.props.toggleBreweryToUserList(this.state.brewery.name, 'breweriesToVisit')} aria-label={`Mark ${this.state.brewery.name} as To Visit`}>Mark as To Visit</button>
             }
             {inBreweriesVisited ?
-              <button className='visited-btn' onClick={() => this.props.toggleBreweryToUserList(this.state.brewery.name, 'breweriesVisited')}>Unmark as Visited</button> :
-              <button className='visited-btn' onClick={() => this.props.toggleBreweryToUserList(this.state.brewery.name, 'breweriesVisited')}>Mark as Visited</button>
+              <button className='visited-btn' onClick={() => this.props.toggleBreweryToUserList(this.state.brewery.name, 'breweriesVisited')} aria-label={`Unmark ${this.state.brewery.name} as Visited`}>Unmark as Visited</button> :
+              <button className='visited-btn' onClick={() => this.props.toggleBreweryToUserList(this.state.brewery.name, 'breweriesVisited')}  aria-label={`Mark ${this.state.brewery.name} as Visited`}>Mark as Visited</button>
             }
           </section>
         </section>

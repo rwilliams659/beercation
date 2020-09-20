@@ -29,8 +29,6 @@ class BreweryDetails extends Component {
     const inBreweriesToVisit = this.props.breweriesToVisit.find(savedBrewery => savedBrewery.id === this.state.brewery.id)
     const inBreweriesVisited = this.props.breweriesVisited.find(savedBrewery => savedBrewery.id === this.state.brewery.id);
 
-    console.log(this.state.brewery)
-
     return (
     <>
     { Object.keys(this.state.brewery).length === 0 && !this.state.error &&
@@ -39,7 +37,7 @@ class BreweryDetails extends Component {
     { this.state.error &&
       <h2>{this.state.error}</h2>
     }
-    { Object.keys(this.state.brewery).length > 0 && 
+      { Object.keys(this.state.brewery).length > 0 && 
       <section className='BreweryDetails'>
         <section className='img-column'>
           <Link to='/' className='back-link'><button className='back-btn'>← Back to Results</button></Link>

@@ -832,5 +832,166 @@ describe('App', () => {
 
     expect(breweryPhone).toBeInTheDocument();
     expect(breweryLink).toBeInTheDocument();
+  });
+
+  it('should allow a user to view brewery details from search results and then mark as "To Visit"', async () => {
+    fetchSearchResults.mockResolvedValueOnce([
+      {
+        id: 1,
+        name: 'Denver Brews',
+        brewery_type: 'micro',
+        street: '1 Lavender Ave',
+        city: 'Denver',
+        state: 'Colorado',
+        postal_code: '12345',
+        country: 'United States',
+        longitute: '-100',
+        latitude: '30',
+        phone: '1112223333',
+        website_url: 'http://brews.com',
+        updated_at: '2020-01-01T21:21:20.283Z'
+      },
+    ])
+
+    fetchSearchResults.mockResolvedValueOnce([
+      {
+        id: 2,
+        name: 'Portland Brews',
+        brewery_type: 'brewpub',
+        street: '2 Drurey Lane',
+        city: 'Portland',
+        state: 'Oregon',
+        postal_code: '67890',
+        country: 'United States',
+        longitute: '-50',
+        latitude: '40',
+        phone: '1384028482',
+        website_url: 'http://brews-2.com',
+        updated_at: '2017-05-03T21:21:20.283Z'
+      }
+    ])
+
+    fetchBreweryByName.mockResolvedValue([
+      {
+        id: 1,
+        name: 'Denver Brews',
+        brewery_type: 'micro',
+        street: '1 Lavender Ave',
+        city: 'Denver',
+        state: 'Colorado',
+        postal_code: '12345',
+        country: 'United States',
+        longitute: '-100',
+        latitude: '30',
+        phone: '1112223333',
+        website_url: 'http://brews.com',
+        updated_at: '2020-01-01T21:21:20.283Z'
+      },
+    ])
+
+    render(
+      <MemoryRouter>
+        < App />
+      </MemoryRouter>
+    )
+
+    const searchBar = screen.getByPlaceholderText('Enter a city name');
+    const searchBtn = screen.getByRole('button', { name: 'Search' });
+
+    fireEvent.change(searchBar, { target: { value: 'Denver' } });
+    fireEvent.click(searchBtn);
+
+    const breweryCard1 = await waitFor(() => screen.getByRole('heading', { name: 'Denver Brews' }));
+
+    fireEvent.click(breweryCard1);
+
+    const markToVisitBtn = await waitFor(() => screen.getByLabelText('Mark Denver Brews as To Visit'));
+
+    fireEvent.click(markToVisitBtn);
+
+    const toVisitBadge = await waitFor(() => screen.getByLabelText('Denver Brews marked as "to visit"'));
+
+    expect(toVisitBadge).toBeInTheDocument();
+  });
+
+  it('should allow a user to view brewery details from search results and then mark as "Visited"', async () => {
+    fetchSearchResults.mockResolvedValueOnce([
+      {
+        id: 1,
+        name: 'Denver Brews',
+        brewery_type: 'micro',
+        street: '1 Lavender Ave',
+        city: 'Denver',
+        state: 'Colorado',
+        postal_code: '12345',
+        country: 'United States',
+        longitute: '-100',
+        latitude: '30',
+        phone: '1112223333',
+        website_url: 'http://brews.com',
+        updated_at: '2020-01-01T21:21:20.283Z'
+      },
+    ])
+
+    fetchSearchResults.mockResolvedValueOnce([
+      {
+        id: 2,
+        name: 'Portland Brews',
+        brewery_type: 'brewpub',
+        street: '2 Drurey Lane',
+        city: 'Portland',
+        state: 'Oregon',
+        postal_code: '67890',
+        country: 'United States',
+        longitute: '-50',
+        latitude: '40',
+        phone: '1384028482',
+        website_url: 'http://brews-2.com',
+        updated_at: '2017-05-03T21:21:20.283Z'
+      }
+    ])
+
+    fetchBreweryByName.mockResolvedValue([
+      {
+        id: 1,
+        name: 'Denver Brews',
+        brewery_type: 'micro',
+        street: '1 Lavender Ave',
+        city: 'Denver',
+        state: 'Colorado',
+        postal_code: '12345',
+        country: 'United States',
+        longitute: '-100',
+        latitude: '30',
+        phone: '1112223333',
+        website_url: 'http://brews.com',
+        updated_at: '2020-01-01T21:21:20.283Z'
+      },
+    ])
+
+    render(
+      <MemoryRouter>
+        < App />
+      </MemoryRouter>
+    )
+
+    const searchBar = screen.getByPlaceholderText('Enter a city name');
+    const searchBtn = screen.getByRole('button', { name: 'Search' });
+
+    fireEvent.change(searchBar, { target: { value: 'Denver' } });
+    fireEvent.click(searchBtn);
+
+    const breweryCard1 = await waitFor(() => screen.getByRole('heading', { name: 'Denver Brews' }));
+
+    fireEvent.click(breweryCard1);
+
+    const markVisitedBtn = await waitFor(() => screen.getByLabelText('Mark Denver Brews as Visited'));
+
+    fireEvent.click(markVisitedBtn);
+
+    const visitedBadge = await waitFor(() => screen.getByLabelText('Denver Brews marked as "visited"'));
+
+    expect(visitedBadge).toBeInTheDocument();
   })
+  
 })

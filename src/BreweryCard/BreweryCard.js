@@ -5,7 +5,7 @@ import bottleCapIcon from '../images/bottle-cap.png'
 import { Link } from 'react-router-dom'
 
 
-const BreweryCard = ({ name, type, id, city, state, toggleBreweryToUserList, inBreweriesToVisit, inBreweriesVisited }) => {
+const BreweryCard = ({ name, type, city, state, toggleBreweryToUserList, inBreweriesToVisit, inBreweriesVisited }) => {
   const formattedName = name.replace(/\s/g, '_')
   return (
     <section className='BreweryCard'>
@@ -42,7 +42,6 @@ const BreweryCard = ({ name, type, id, city, state, toggleBreweryToUserList, inB
 BreweryCard.propTypes = {
   name: propTypes.string.isRequired,
   type: propTypes.string.isRequired,
-  id: propTypes.number.isRequired,
   city: propTypes.string.isRequired,
   state: propTypes.string.isRequired,
   toggleBreweryToUserList: propTypes.func.isRequired,

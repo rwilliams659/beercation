@@ -17,35 +17,45 @@ class BreweryDetails extends Component {
 
   componentDidMount = () => {
     this.apiCalls.fetchBreweryByName(this.props.name)
-      .then(brewery => this.setState({ brewery: brewery[0] }))
+      .then(brewery => {
+        if (brewery.length > 0) {
+          this.setState({ brewery: brewery[0] })
+        } else {
+          this.setState({ error: 'Sorry, we couldn\'t locate that brewery.'})
+        }
+      })
       .catch(error => this.setState({ error }))
   }
 
   render() {
-     const inBreweriesToVisit = this.props.breweriesToVisit.find(savedBrewery => savedBrewery.id === this.state.brewery.id)
-     const inBreweriesVisited = this.props.breweriesVisited.find(savedBrewery => savedBrewery.id === this.state.brewery.id);
+    const inBreweriesToVisit = this.props.breweriesToVisit.find(savedBrewery => savedBrewery.id === this.state.brewery.id)
+    const inBreweriesVisited = this.props.breweriesVisited.find(savedBrewery => savedBrewery.id === this.state.brewery.id);
+
+    console.log(this.state.brewery)
 
     return (
     <>
-    { Object.keys(this.state.brewery).length === 0 && 
+    { Object.keys(this.state.brewery).length === 0 && !this.state.error &&
       <h2>One moment please...</h2>
+    }
+    { this.state.error &&
+      <h2>{this.state.error}</h2>
     }
     { Object.keys(this.state.brewery).length > 0 && 
       <section className='BreweryDetails'>
         <section className='img-column'>
-          <button><Link to='/'>Back to Results</Link></button>
-          <img src={brewery1} alt='brewery'/>
-          <div>
-            {inBreweriesToVisit ? <p className='tag1'>To Visit</p> : ''}
-            {inBreweriesVisited ? <p className='tag2'>Visited</p> : ''}
+          <Link to='/' className='back-link'><button className='back-btn'>← Back to Results</button></Link>
+          <div className='brewery-img' title='brewery'>
+            {inBreweriesToVisit ? <p className='tag1 tags'>To Visit</p> : ''}
+            {inBreweriesVisited ? <p className='tag2 tags'>Visited</p> : ''}
           </div>
         </section>
         <section className='brewery-info'>
           <h2>{this.state.brewery.name}</h2>
           <p>Address:<br />{this.state.brewery.street}<br />{this.state.brewery.city}, {this.state.brewery.state} {this.state.brewery.postal_code}</p>
           <p>Telephone: {this.state.brewery.phone}</p>
-          <a href={this.state.brewery.website_url} target='_blank' rel='noopener noreferrer'>Learn more</a>
-          <section className='add-btns'>
+            <a href={this.state.brewery.website_url} target='_blank' rel='noopener noreferrer' className='brewery-link'>Learn more →</a>
+          <section className='add-btns details-btns'>
             {inBreweriesToVisit ?
               <button className='to-visit-btn' onClick={() => this.props.toggleBreweryToUserList(this.state.brewery.name, 'breweriesToVisit')}>Unmark as To Visit</button> :
               <button className='to-visit-btn' onClick={() => this.props.toggleBreweryToUserList(this.state.brewery.name, 'breweriesToVisit')}>Mark as To Visit</button>

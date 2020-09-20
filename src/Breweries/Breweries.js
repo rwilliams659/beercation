@@ -22,7 +22,6 @@ const Breweries = ({ searchResults, toggleBreweryToUserList, breweriesToVisit, b
           key={brewery.id}
           name={brewery.name}
           type={brewery.brewery_type}
-          id={brewery.id}
           city={brewery.city}
           state={brewery.state}
           toggleBreweryToUserList={toggleBreweryToUserList}

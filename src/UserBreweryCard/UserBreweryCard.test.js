@@ -25,7 +25,7 @@ describe('UserBreweryCard', () => {
     const breweryName = screen.getByRole('heading', {name: 'Denver Brews'});
     const type = screen.getByText('Type: micro');
     const location = screen.getByText('Denver, Colorado');
-    const button = screen.getByRole('button', {name: 'Unmark as To Visit'});
+    const button = screen.getByRole('button', {name: 'Unmark Denver Brews as To Visit'});
 
     expect(icon).toBeInTheDocument(); 
     expect(breweryName).toBeInTheDocument(); 
@@ -54,7 +54,7 @@ describe('UserBreweryCard', () => {
     const breweryName = screen.getByRole('heading', { name: 'Denver Brews' });
     const type = screen.getByText('Type: micro');
     const location = screen.getByText('Denver, Colorado');
-    const button = screen.getByRole('button', { name: 'Unmark as Visited' });
+    const button = screen.getByRole('button', { name: 'Unmark Denver Brews as Visited' });
 
     expect(icon).toBeInTheDocument();
     expect(breweryName).toBeInTheDocument();
@@ -81,7 +81,7 @@ describe('UserBreweryCard', () => {
       </BrowserRouter>
     )
 
-    const button = screen.getByRole('button', { name: 'Unmark as To Visit' });
+    const button = screen.getByRole('button', { name: 'Unmark Denver Brews as To Visit' });
 
     fireEvent.click(button);
 
@@ -107,7 +107,7 @@ describe('UserBreweryCard', () => {
       </BrowserRouter>
     )
 
-    const button = screen.getByRole('button', { name: 'Unmark as Visited' });
+    const button = screen.getByRole('button', { name: 'Unmark Denver Brews as Visited' });
 
     fireEvent.click(button);
 

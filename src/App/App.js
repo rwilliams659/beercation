@@ -62,10 +62,8 @@ class App extends Component {
       const formattedName = name.replace(/\s/g, '_')
       fetchBreweryByName(formattedName)
         .then(response => {
-          const brewery = response[0]
-          if (!this.state[list].includes(brewery)) {
-            this.setState({ [list]: [...this.state[list], brewery] });
-          }
+          const brewery = response[0];
+          this.setState({ [list]: [...this.state[list], brewery] });
         })
         .catch(error => alert(`Sorry, an error occurred with adding this brewery to your ${list} list.` ))
     }

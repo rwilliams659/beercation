@@ -1,4 +1,6 @@
-# Beercation App
+# Beercation App 
+
+<img src='/images/barrel.png' alt='barrel-logo' width='100px'/>
 
 Meet Beercation, the ultimate app for beer enthusiasts looking to travel to cities around the US to try the best new brews. Simply enter the name of your next travel destination to see a list of breweries, bars, and brewpubs in that city. You can then filter by brewery type, and click on any specific brewery card to view more information. 
 
@@ -26,7 +28,20 @@ This application is the final solo project of module 3 of the Turing School Fron
 
 ## Preview of the Application
 
-//gifs & screenshots here
+**Search for breweries in a US city**  
+//Gif for searching
+
+**Filter breweries by type**  
+//Gif for filtering (2 types of filter, then clear)
+
+**Mark any brewery as "to visit" or "visited"**  
+//Gif for marking as to visit/visited from card view
+
+**View individual brewery details** 
+//Gif for viewing indiv brewery page; mark as To Visit from there, click back to results
+
+**View your saved breweries on the To Visit and Visited pages**  
+//Gif for viewing To Visit page & Visited page: have 8+ breweries on Visit page & remove one, but blank Visited page 
 
 ## App Creator
 

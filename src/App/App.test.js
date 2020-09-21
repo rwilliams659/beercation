@@ -96,6 +96,25 @@ describe('App', () => {
     expect(defaultMsg).toBeInTheDocument();
   });
 
+  it('should not allow a user to execute a search until something has been typed in search box', async () => {
+
+    fetchSearchResults.mockResolvedValue([])
+
+    render(
+      <MemoryRouter>
+        < App />
+      </MemoryRouter>
+    )
+
+    const searchBar = screen.getByPlaceholderText('Enter a city name');
+    const searchBtn = screen.getByRole('button', { name: 'Search' });
+
+    fireEvent.change(searchBar, { target: { value: '' } });
+    fireEvent.click(searchBtn);
+
+    expect(searchBtn.disabled).toBe(true);
+  });
+
   it('should allow a user to enter a city name in the search bar and see a list of breweries in that city', async () => {
 
     fetchSearchResults.mockResolvedValueOnce([

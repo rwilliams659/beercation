@@ -6,7 +6,7 @@ const PageNotFound = () => {
   return (
     <section className='PageNotFound'>
       <h2>Oops, we couldn't find that page!</h2>
-      <p> We suggest you navigate to the <Link to='/'>homepage.</Link></p>
+      <p> We suggest you navigate to the <Link to='/' className='hp-link'>homepage.</Link></p>
     </section>
   )
 }

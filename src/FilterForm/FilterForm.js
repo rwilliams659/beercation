@@ -24,11 +24,7 @@ class FilterForm extends Component {
   handleFilterClick = (event) => {
     event.preventDefault()
     const stateKeys = Object.keys(this.state);
-    const searchTerms = stateKeys.filter(key => {
-      if (this.state[key]) {
-        return key
-      }
-    });
+    const searchTerms = stateKeys.filter(key => this.state[key] ? true : false);
     if (searchTerms.length > 0) {
       this.props.filterSearchResults(searchTerms);
     }

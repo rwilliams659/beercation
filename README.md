@@ -1,68 +1,56 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Beercation App 
 
-## Available Scripts
+![logo](readme-assets/barrel.png)
 
-In the project directory, you can run:
+Meet Beercation, the ultimate app for beer enthusiasts looking to travel to cities around the US to try the best new brews. Simply enter the name of your next travel destination to see a list of breweries, bars, and brewpubs in that city. You can then filter by brewery type, and click on any specific brewery card to view more information. 
 
-### `npm start`
+To help you plan your beertastic trip, you can easily mark any brewery as "To Visit" or "Visited" from both its card view and its detail page view, and then view them on the To Visit and Visited pages in the navigation bar. If you change your mind, you can always un-mark any brewery. 
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Breweries marked as "To Visit" and "Visited" are saved to localStorage for data persistence, since I did not build a back-end for this project. 
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+This application is the final solo project of module 3 of the Turing School Front End program. <a href="https://frontend.turing.io/projects/module-3/binary-challenge.html" target="_blank">See details here ></a>
 
-### `npm test`
+## Setup Instructions 
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+1. Clone down this repo and cd into the directory
+2. Run `npm install`
+3. Run `npm start`
+4. Go to `http://localhost:3000/` in your browser to view the application
 
-### `npm run build`
+## Technologies Used
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- React
+- React Router
+- CSS
+- React Testing Library
+- Jest 
+- <a href="https://www.openbrewerydb.org/documentation/01-listbreweries" target="_blank">ListBreweries API</a>
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+## Preview of the Application
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+**Search for breweries in a US city**  
+![search functionality](readme-assets/search.gif)
+  
+**Filter breweries by type**  
+![search functionality](readme-assets/filter.gif)
 
-### `npm run eject`
+**Mark any brewery as "to visit" or "visited"**  
+![search functionality](readme-assets/mark-cards.gif)
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+**View individual brewery details** 
+![search functionality](readme-assets/brewery-details.gif)
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+**View your saved breweries on the To Visit and Visited pages**  
+![search functionality](readme-assets/user-saved.gif)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## Future Plans
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+My future plans for the app include:
+- Adding functionality so that users can also search for a particular brewery
+- Allow a user to add a rating and comments to any saved brewery
 
-## Learn More
+## App Creator
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+Rachel Williams:   
+[GitHub](https://github.com/rwilliams659)   
+[LinkedIn](https://www.linkedin.com/in/rachelsarahwilliams/)

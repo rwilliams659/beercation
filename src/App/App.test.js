@@ -1645,8 +1645,7 @@ describe('App', () => {
 })
 
 describe('Local storage', () => {
-  it('should retrieve items from localStorage on page load', () => {
-
+  beforeEach(() => {
     class LocalStorage {
       constructor() {
         this.store = {};
@@ -1659,9 +1658,13 @@ describe('Local storage', () => {
       setItem(key, value) {
         this.store[key] = value
       }
+
     }
 
     global.localStorage = new LocalStorage();
+  })
+  
+  it('should retrieve items from localStorage on page load and display them on the "to visit" page', () => {
 
     const breweries = [
       {
@@ -1707,6 +1710,60 @@ describe('Local storage', () => {
     const toVisitLink = screen.getByRole('link', { name: 'TO VISIT' });
 
     fireEvent.click(toVisitLink);
+
+    const breweryCard = screen.getByRole('heading', { name: 'Denver Brews' });
+    const breweryCard2 = screen.getByRole('heading', { name: 'Portland Brews' });
+
+    expect(breweryCard).toBeInTheDocument();
+    expect(breweryCard2).toBeInTheDocument();
+  });
+
+  it('should retrieve items from localStorage on page load and display them on the "visited" page', () => {
+
+    const breweries = [
+      {
+        id: 1,
+        name: 'Denver Brews',
+        brewery_type: 'micro',
+        street: '1 Lavender Ave',
+        city: 'Denver',
+        state: 'Colorado',
+        postal_code: '12345',
+        country: 'United States',
+        longitute: '-100',
+        latitude: '30',
+        phone: '1112223333',
+        website_url: 'http://brews.com',
+        updated_at: '2020-01-01T21:21:20.283Z'
+      },
+      {
+        id: 2,
+        name: 'Portland Brews',
+        brewery_type: 'brewpub',
+        street: '2 Drurey Lane',
+        city: 'Portland',
+        state: 'Oregon',
+        postal_code: '67890',
+        country: 'United States',
+        longitute: '-50',
+        latitude: '40',
+        phone: '1384028482',
+        website_url: 'http://brews-2.com',
+        updated_at: '2017-05-03T21:21:20.283Z'
+      }
+    ]
+
+    global.localStorage.setItem('breweriesVisited', JSON.stringify(breweries));
+
+    render(
+      <MemoryRouter>
+        < App />
+      </MemoryRouter>
+    )
+
+    const visitedLink = screen.getByRole('link', { name: 'VISITED' });
+
+    fireEvent.click(visitedLink);
 
     const breweryCard = screen.getByRole('heading', { name: 'Denver Brews' });
     const breweryCard2 = screen.getByRole('heading', { name: 'Portland Brews' });

@@ -3,10 +3,11 @@ import './App.css';
 import Header from '../Header/Header';
 import SearchForm from '../SearchForm/SearchForm'
 import { fetchSearchResults, fetchBreweryByName } from '../helpers/apiCalls'
-import { Route } from 'react-router-dom'
+import { Route, Switch } from 'react-router-dom'
 import Breweries from '../Breweries/Breweries';
 import UserSavedBreweries from '../UserSavedBreweries/UserSavedBreweries';
 import BreweryDetails from '../BreweryDetails/BreweryDetails';
+import PageNotFound from '../PageNotFound/PageNotFound'
 
 class App extends Component {
   constructor() {
@@ -87,50 +88,53 @@ class App extends Component {
     return (
       <section className="App">
         <Header />
-          <Route exact path='/' render={() => 
+          <Switch>
+            <Route exact path='/' render={() => 
+              <main>
+                <SearchForm 
+                  getSearchResults={this.getSearchResults}
+                  error={this.state.error}
+                />
+                <Breweries
+                  searchResults={this.state.searchResults}
+                  toggleBreweryToUserList={this.toggleBreweryToUserList}
+                  breweriesToVisit={this.state.breweriesToVisit}
+                  breweriesVisited={this.state.breweriesVisited}
+                  filterSearchResults={this.filterSearchResults}
+                  filteredSearchResults={this.state.filteredSearchResults}
+                  filtered={this.state.filtered}
+                  resetFilter={this.resetFilter}
+                />
+              </main>
+            }/>
+            <Route exact path='/to-visit/' render={() => 
+              <main>
+                <UserSavedBreweries 
+                  userBreweries={this.state.breweriesToVisit}
+                  view='To Visit'
+                  toggleBreweryToUserList={this.toggleBreweryToUserList}
+                />
+              </main>
+          }/>
+          <Route exact path='/visited/' render={() =>
             <main>
-              <SearchForm 
-                getSearchResults={this.getSearchResults}
-                error={this.state.error}
-              />
-              <Breweries
-                searchResults={this.state.searchResults}
+              <UserSavedBreweries
+                userBreweries={this.state.breweriesVisited}
+                view='Visited'
                 toggleBreweryToUserList={this.toggleBreweryToUserList}
-                breweriesToVisit={this.state.breweriesToVisit}
-                breweriesVisited={this.state.breweriesVisited}
-                filterSearchResults={this.filterSearchResults}
-                filteredSearchResults={this.state.filteredSearchResults}
-                filtered={this.state.filtered}
-                resetFilter={this.resetFilter}
               />
             </main>
           }/>
-          <Route exact path='/to-visit/' render={() => 
-            <main>
-              <UserSavedBreweries 
-                userBreweries={this.state.breweriesToVisit}
-                view='To Visit'
-                toggleBreweryToUserList={this.toggleBreweryToUserList}
-              />
-            </main>
-        }/>
-        <Route exact path='/visited/' render={() =>
-          <main>
-            <UserSavedBreweries
-              userBreweries={this.state.breweriesVisited}
-              view='Visited'
+          <Route path='/breweries/:name/' render={({ match }) => 
+            <BreweryDetails 
+              name={match.params.name}
               toggleBreweryToUserList={this.toggleBreweryToUserList}
+              breweriesVisited={this.state.breweriesVisited}
+              breweriesToVisit={this.state.breweriesToVisit}
             />
-          </main>
-        }/>
-        <Route path='/breweries/:name/' render={({ match }) => 
-          <BreweryDetails 
-            name={match.params.name}
-            toggleBreweryToUserList={this.toggleBreweryToUserList}
-            breweriesVisited={this.state.breweriesVisited}
-            breweriesToVisit={this.state.breweriesToVisit}
-          />
-        }/>
+          }/>
+          <Route render={() => <PageNotFound/>}/>
+        </Switch>
       </section>
     );
   }

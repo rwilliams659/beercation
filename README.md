@@ -30,12 +30,12 @@ This application is the final solo project of module 3 of the Turing School Fron
 
 **Search for breweries in a US city**  
 ![search functionality](readme-assets/search.gif)
-
+  
 **Filter breweries by type**  
-//Gif for filtering (2 types of filter, then clear)
+![search functionality](readme-assets/filter.gif)
 
 **Mark any brewery as "to visit" or "visited"**  
-//Gif for marking as to visit/visited from card view
+![search functionality](readme-assets/mark-cards.gif)
 
 **View individual brewery details** 
 //Gif for viewing indiv brewery page; mark as To Visit from there, click back to results

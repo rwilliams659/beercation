@@ -38,10 +38,10 @@ This application is the final solo project of module 3 of the Turing School Fron
 ![search functionality](readme-assets/mark-cards.gif)
 
 **View individual brewery details** 
-//Gif for viewing indiv brewery page; mark as To Visit from there, click back to results
+![search functionality](readme-assets/brewery-details.gif)
 
 **View your saved breweries on the To Visit and Visited pages**  
-//Gif for viewing To Visit page & Visited page: have 8+ breweries on Visit page & remove one, but blank Visited page 
+![search functionality](readme-assets/user-saved.gif)
 
 ## App Creator
 

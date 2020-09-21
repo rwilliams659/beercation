@@ -21,6 +21,12 @@ class App extends Component {
     }
   }
 
+  componentDidMount() {
+    const breweriesToVisit = JSON.parse(localStorage.getItem('breweriesToVisit')) || [];
+    const breweriesVisited = JSON.parse(localStorage.getItem('breweriesVisited')) || [];
+    this.setState({ breweriesToVisit, breweriesVisited })
+  }
+
   getSearchResults = (searchTerm) => {
     this.setState({ error: ''});
     this.setState({ filtered: false })
@@ -57,13 +63,13 @@ class App extends Component {
       const newStateList = this.state[list]
       const targetIndex = this.state[list].indexOf(brewery);
       newStateList.splice(targetIndex, 1);
-      this.setState({ [list]: newStateList })
+      this.setState({ [list]: newStateList }, () => localStorage.setItem([list], JSON.stringify(this.state[list])))
     } else {
       const formattedName = name.replace(/\s/g, '_')
       fetchBreweryByName(formattedName)
         .then(response => {
           const brewery = response[0];
-          this.setState({ [list]: [...this.state[list], brewery] });
+          this.setState({ [list]: [...this.state[list], brewery] }, () => localStorage.setItem([list], JSON.stringify(this.state[list])));
         })
         .catch(error => alert(`Sorry, an error occurred with adding this brewery to your ${list} list.` ))
     }

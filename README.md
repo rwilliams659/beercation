@@ -1,6 +1,12 @@
 # Beercation App
 
-//Project description & inspiration here 
+Meet Beercation, the ultimate app for beer enthusiasts looking to travel to cities around the US to try the best new brews. Simply enter the name of your next travel destination to see a list of breweries, bars, and brewpubs in that city. You can then filter by brewery type, and click on any specific brewery card to view more information. 
+
+To help you plan your beertastic trip, you can easily mark any brewery as "To Visit" or "Visited" from both its card view and its detail page view, and then view them on the To Visit and Visited pages in the navigation bar. If you change your mind, you can always un-mark any brewery. 
+
+Breweries marked as "To Visit" and "Visited" are saved to localStorage for data persistence, since I did not build a back-end for this project. 
+
+This application is the final solo project of module 3 of the Turing School Front End program. [See details here >](https://frontend.turing.io/projects/module-3/binary-challenge.html)
 
 ## Setup Instructions 
 

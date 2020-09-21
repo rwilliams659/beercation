@@ -9,6 +9,10 @@ jest.mock('../helpers/apiCalls.js')
 describe('App', () => {
   it('should bring users to the correct views when using the navigation for Home and To Visit', () => {
 
+    afterEach(() => {
+      global.localStorage.clear();
+    })
+
     render(
       <MemoryRouter>
         < App />

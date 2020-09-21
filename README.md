@@ -29,7 +29,7 @@ This application is the final solo project of module 3 of the Turing School Fron
 ## Preview of the Application
 
 **Search for breweries in a US city**  
-//Gif for searching
+![search functionality](readme-assets/search.gif)
 
 **Filter breweries by type**  
 //Gif for filtering (2 types of filter, then clear)

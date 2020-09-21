@@ -21,6 +21,12 @@ class App extends Component {
     }
   }
 
+  componentDidMount() {
+    const breweriesToVisit = JSON.parse(localStorage.getItem('breweriesToVisit')) || [];
+    const breweriesVisited = JSON.parse(localStorage.getItem('breweriesVisited')) || [];
+    this.setState({ breweriesToVisit, breweriesVisited })
+  }
+
   getSearchResults = (searchTerm) => {
     this.setState({ error: ''});
     this.setState({ filtered: false })

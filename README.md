@@ -9,10 +9,6 @@
 3. Once the installation is complete, run `npm start`
 4. Go to `http://localhost:3000/` in your browser to view and interact with the application
 
-## Preview of the Application
-
-//gifs & screenshots here
-
 ## Technologies Used
 
 - React
@@ -21,3 +17,13 @@
 - React Testing Library
 - Jest 
 - [ListBreweries API](https://www.openbrewerydb.org/documentation/01-listbreweries)
+
+## Preview of the Application
+
+//gifs & screenshots here
+
+## App Creator
+
+Rachel Williams:   
+[GitHub](https://github.com/rwilliams659)   
+[LinkedIn](https://www.linkedin.com/in/rachelsarahwilliams/)
